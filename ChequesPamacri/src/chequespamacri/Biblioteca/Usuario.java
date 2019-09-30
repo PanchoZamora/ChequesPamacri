@@ -46,7 +46,15 @@ public class Usuario {
     }
 
     public void setNomUsuario(String nomUsuario) {
-        this.nomUsuario = nomUsuario;
+        
+        // Se valida que el valor no esté vacio, de ser asi, se emite la excepción a ser controlada
+        if(nomUsuario == null || nomUsuario.isEmpty() || "".equals(nomUsuario)){
+            throw new IllegalArgumentException("EL NOMBRE ESTA VACIO"); 
+        }
+        else{
+            this.nomUsuario=nomUsuario;
+        }
+        
     }
 
     public String getNombre() {
@@ -62,7 +70,13 @@ public class Usuario {
     }
 
     public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+        // Se valida que el valor no esté vacio, de ser asi, se emite la excepción a ser controlada
+        if(contrasena == null || contrasena.isEmpty() || "".equals(contrasena)){
+            throw new IllegalArgumentException("LA CONTRASEÑA ESTA VACIA"); 
+        }
+        else{
+            this.contrasena=contrasena;
+        }
     }
 
     public String getCorreo() {

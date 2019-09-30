@@ -20,14 +20,10 @@ public class ChequesPamacri {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        Login nuevaInstancia = new Login();
         
-        // Pantalla inicial de carga ( estetico )
-        
-        Inicio nuevo = new Inicio();
-        
-        nuevo.setVisible(true);
-        
-        // Carga de archivos desde base de datos 
+        nuevaInstancia.setLocationRelativeTo(null);
+        nuevaInstancia.setVisible(true);
         
         
         

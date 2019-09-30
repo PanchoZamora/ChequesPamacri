@@ -6,32 +6,27 @@
 package chequespamacri;
 
 import chequespamacri.Biblioteca.*;
-import java.io.Console;
 
 /**
  *
  * @author franc
  */
-public class ChequesPamacri {
-
-    /**
-     * @param args the command line arguments
-     */
+public class TEST {
+    
     public static void main(String[] args) {
         // TODO code application logic here
         
+        // TEST 
         
-        // Pantalla inicial de carga ( estetico )
+        Cheque prueba = new Cheque();
         
-        Inicio nuevo = new Inicio();
+        System.out.println("TEST " + prueba.getFechaEmision());
         
-        nuevo.setVisible(true);
-        
-        // Carga de archivos desde base de datos 
-        
-        
+        System.out.println(prueba.getFechaEmision().getMonth());
         
         
     }
+    
+    
     
 }

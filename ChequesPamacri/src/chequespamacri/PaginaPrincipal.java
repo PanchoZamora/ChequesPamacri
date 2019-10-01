@@ -6,6 +6,15 @@
 package chequespamacri;
 
 import chequespamacri.Biblioteca.Usuario;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -16,9 +25,24 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form PaginaPrincipal
      */
+    
+    Usuario usrConectado;
+    
     public PaginaPrincipal(Usuario usrConectado) {
         initComponents();
+        
+        this.usrConectado = usrConectado;
         lblBienvenida.setText("Bienvenido " + usrConectado.getNomUsuario());
+        this.setLocationRelativeTo(null);
+        
+        if(usrConectado.getRol() == "Administrador"){
+            btnAdministrador.setVisible(true);
+        }
+        else{
+            btnAdministrador.setVisible(false);
+        }
+        
+        
     }
 
     /**
@@ -35,6 +59,12 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         btnIngresoCheques = new javax.swing.JButton();
         lblBienvenida = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btnSslir = new javax.swing.JButton();
+        btnPerfil = new javax.swing.JButton();
+        btnAdministrador = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        lblLogo = new javax.swing.JLabel();
+        list1 = new java.awt.List();
 
         jLabel1.setFont(new java.awt.Font("Corbel", 3, 36)); // NOI18N
         jLabel1.setText("Cheques Pamacri");
@@ -52,43 +82,105 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblBienvenida.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         lblBienvenida.setText("Bienvenido *NOMBRE DE USUARIO*");
 
         jButton1.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
-        jButton1.setText("Proveedores");
+        jButton1.setText("<html><p align=center>Proveedores<br>Registrados</p></html>");
+        jButton1.setToolTipText("");
+        jButton1.setActionCommand("Proveedores");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnSslir.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        btnSslir.setText("Salir");
+        btnSslir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSslirActionPerformed(evt);
+            }
+        });
+
+        btnPerfil.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        btnPerfil.setText("Perfil");
+
+        btnAdministrador.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        btnAdministrador.setText("Portal Administrador");
+
+        jButton2.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        jButton2.setText("<html><p align=center>Registros<br>de<br>Cheques</p></html>");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chequespamacri/Img/my-shop-logo-1550807958.jpg"))); // NOI18N
+        lblLogo.setMaximumSize(new java.awt.Dimension(1000, 800));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(btnIngresoCheques, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-                .addComponent(lblBienvenida)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblBienvenida)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAdministrador)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnPerfil))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(btnIngresoCheques, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(62, 62, 62)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSslir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(259, 259, 259))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lblBienvenida))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(btnIngresoCheques, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jButton1)))
-                .addContainerGap(200, Short.MAX_VALUE))
+                        .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnPerfil)
+                            .addComponent(btnAdministrador)))
+                    .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnIngresoCheques, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnSslir, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         pack();
@@ -99,13 +191,37 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         // BOTON DE INICIO PARA PAGINA INGRESO CHEQUES
     }//GEN-LAST:event_btnIngresoChequesActionPerformed
 
+    private void btnSslirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSslirActionPerformed
+        // TODO add your handling code here:
+        
+        this.dispose();
+        
+        System.exit(0);
+        
+        
+    }//GEN-LAST:event_btnSslirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdministrador;
     private javax.swing.JButton btnIngresoCheques;
+    private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnSslir;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblBienvenida;
+    private javax.swing.JLabel lblLogo;
+    private java.awt.List list1;
     // End of variables declaration//GEN-END:variables
 }

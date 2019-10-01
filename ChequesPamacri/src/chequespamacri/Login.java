@@ -23,6 +23,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         usrConectado = new Usuario();
         initComponents();
+        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -37,9 +39,9 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtContrasena = new javax.swing.JTextField();
         iniciarBtn = new javax.swing.JButton();
+        txtContrasena = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,14 +50,14 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre de usuario");
 
-        jLabel3.setText("Contraseña");
-
         iniciarBtn.setText("Iniciar");
         iniciarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iniciarBtnActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("Contraseña");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,8 +66,8 @@ public class Login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtUsuario)
-                    .addComponent(txtContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(txtContrasena))
                 .addGap(147, 147, 147))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,11 +78,11 @@ public class Login extends javax.swing.JFrame {
                         .addGap(174, 174, 174)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(195, 195, 195)
-                        .addComponent(iniciarBtn)))
+                        .addComponent(iniciarBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(jLabel4)))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,9 +94,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(iniciarBtn)
@@ -112,10 +114,15 @@ public class Login extends javax.swing.JFrame {
             
             usrConectado.setNomUsuario(txtUsuario.getText());
             usrConectado.setContrasena(txtContrasena.getText());
+            usrConectado.setRol("Administrador");
             
             if("admin".equals(usrConectado.getNomUsuario()) && "admin".equals(usrConectado.getContrasena())){
                 PaginaPrincipal programa = new PaginaPrincipal(usrConectado);
                 programa.setVisible(true);
+                this.setVisible(false);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrecta");
             }
             
         } catch (Exception e) {
@@ -131,8 +138,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton iniciarBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField txtContrasena;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField txtContrasena;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

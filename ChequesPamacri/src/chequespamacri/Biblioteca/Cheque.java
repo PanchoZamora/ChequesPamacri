@@ -19,13 +19,15 @@ public class Cheque {
     private LocalDate fechaEmision;
     private String nroFactura;
     private double monto;
+    private String estado;
 
-    public Cheque(int id, String nroCheque, LocalDate fechaEmision, String nroFactura, double monto) {
+    public Cheque(int id, String nroCheque, LocalDate fechaEmision, String nroFactura, double monto, String estado) {
         this.id = id;
         this.nroCheque = nroCheque;
         this.fechaEmision = fechaEmision;
         this.nroFactura = nroFactura;
         this.monto = monto;
+        this.estado = estado;
     }
 
     public Cheque() {
@@ -34,6 +36,7 @@ public class Cheque {
         this.fechaEmision = LocalDate.of(Calendar.getInstance().get(Calendar.YEAR), Month.of(Calendar.getInstance().get(Calendar.MONTH)+1), Calendar.getInstance().get(Calendar.DAY_OF_MONTH ));
         this.nroFactura = "";
         this.monto = 0;
+        this.estado = "";
     }
 
     public int getId() {
@@ -74,6 +77,14 @@ public class Cheque {
 
     public void setMonto(double monto) {
         this.monto = monto;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
     

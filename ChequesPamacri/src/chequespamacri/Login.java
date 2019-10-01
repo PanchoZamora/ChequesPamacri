@@ -112,7 +112,11 @@ public class Login extends javax.swing.JFrame {
             
             usrConectado.setNomUsuario(txtUsuario.getText());
             usrConectado.setContrasena(txtContrasena.getText());
-         
+            
+            if("admin".equals(usrConectado.getNomUsuario()) && "admin".equals(usrConectado.getContrasena())){
+                PaginaPrincipal programa = new PaginaPrincipal(usrConectado);
+                programa.setVisible(true);
+            }
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), /*titulo*/ "Error", JOptionPane.WARNING_MESSAGE);

@@ -15,12 +15,14 @@ public class Proveedor {
     private String rut;
     private String nombre;
     private int plazo;
+    private String tipo;
 
-    public Proveedor(int id, String rut, String nombre, int plazo) {
+    public Proveedor(int id, String rut, String nombre, int plazo, String tipo) {
         this.id = id;
         this.rut = rut;
         this.nombre = nombre;
         this.plazo = plazo;
+        this.tipo = tipo;
     }
 
     public Proveedor() {
@@ -28,6 +30,7 @@ public class Proveedor {
         this.rut = "";
         this.nombre ="";
         this.plazo = 0;
+        this.tipo = "";
     }
 
     public int getId() {
@@ -62,6 +65,13 @@ public class Proveedor {
         this.plazo = plazo;
     }
     
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     
     
     

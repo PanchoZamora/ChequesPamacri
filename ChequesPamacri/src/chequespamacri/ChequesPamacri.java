@@ -5,8 +5,10 @@
  */
 package chequespamacri;
 
-import chequespamacri.Biblioteca.*;
-import java.io.Console;
+import Conexion.ConexionBD;
+import java.sql.SQLException;
+
+
 
 /**
  *
@@ -17,7 +19,7 @@ public class ChequesPamacri {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // TODO code application logic here
         
         Login nuevaInstancia = new Login();
@@ -25,7 +27,14 @@ public class ChequesPamacri {
         nuevaInstancia.setLocationRelativeTo(null);
         nuevaInstancia.setVisible(true);
         
-        
+
+        ConexionBD conn = new ConexionBD();
+        try {
+            conn.getConnection();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
         
         
     }

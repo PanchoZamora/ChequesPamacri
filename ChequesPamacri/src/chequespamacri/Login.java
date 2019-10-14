@@ -5,6 +5,7 @@
  */
 package chequespamacri;
 
+import Mantenedores.MantenedorUsuario;
 import chequespamacri.Biblioteca.*;
 import javax.swing.JOptionPane;
 
@@ -16,6 +17,7 @@ public class Login extends javax.swing.JFrame {
     
     //Usuario Global
     Usuario usrConectado;
+    MantenedorUsuario mantUsuario = new MantenedorUsuario();
    
     /**
      * Creates new form Login
@@ -114,9 +116,11 @@ public class Login extends javax.swing.JFrame {
             
             usrConectado.setNomUsuario(txtUsuario.getText());
             usrConectado.setContrasena(txtContrasena.getText());
-            usrConectado.setRol("Administrador");
             
-            if("admin".equals(usrConectado.getNomUsuario()) && "admin".equals(usrConectado.getContrasena())){
+            if(mantUsuario.validarUsuario(usrConectado)){
+                
+                usrConectado = mantUsuario.obtenerDatos(usrConectado);
+                
                 PaginaPrincipal programa = new PaginaPrincipal(usrConectado);
                 programa.setVisible(true);
                 this.setVisible(false);

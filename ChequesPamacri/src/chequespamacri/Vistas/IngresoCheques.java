@@ -44,8 +44,10 @@ public class IngresoCheques extends javax.swing.JFrame {
         lblIngresoCheques = new javax.swing.JLabel();
         lblBienvenido = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(596, 470));
 
         pnIngresoCheques.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -154,14 +156,20 @@ public class IngresoCheques extends javax.swing.JFrame {
         lblNombreUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblNombreUsuario.setText(" ");
 
+        lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chequespamacri/Img/my-shop-logo-1550807958.jpg"))); // NOI18N
+        lblLogo.setMaximumSize(new java.awt.Dimension(1000, 800));
+
         javax.swing.GroupLayout pnBannerLayout = new javax.swing.GroupLayout(pnBanner);
         pnBanner.setLayout(pnBannerLayout);
         pnBannerLayout.setHorizontalGroup(
             pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnBannerLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblIngresoCheques, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblBienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                     .addComponent(lblNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -171,12 +179,15 @@ public class IngresoCheques extends javax.swing.JFrame {
             .addGroup(pnBannerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnBannerLayout.createSequentialGroup()
                         .addComponent(lblBienvenido)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNombreUsuario))
-                    .addComponent(lblIngresoCheques))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombreUsuario)
+                            .addComponent(lblIngresoCheques))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnGeneralLayout = new javax.swing.GroupLayout(pnGeneral);
@@ -254,6 +265,7 @@ public class IngresoCheques extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbProveedor;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblIngresoCheques;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblMonto;
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblNumeroCheque;

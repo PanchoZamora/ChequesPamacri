@@ -287,6 +287,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblLogo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblGesionCheques" min="-2" pref="186" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -301,14 +303,18 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblLogo" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="lblBienvenido" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblNombreUsuario" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblNombreUsuario" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblGesionCheques" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="lblGesionCheques" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="21" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -336,6 +342,17 @@
                   <Font name="Arial" size="12" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value=" "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblLogo">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/chequespamacri/Img/my-shop-logo-1550807958.jpg"/>
+                </Property>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[1000, 800]"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>

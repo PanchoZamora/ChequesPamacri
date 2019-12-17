@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chequespamacri.Vistas.Proveedor;
+package chequespamacri.Vistas.Cheque;
 
 /**
  *
  * @author sebai
  */
-public class EditarProveedor extends javax.swing.JFrame {
+public class EditarChequeRegistrado extends javax.swing.JFrame {
 
     /**
-     * Creates new form EditarProveedor
+     * Creates new form EditarChequeRegistrado
      */
-    public EditarProveedor() {
+    public EditarChequeRegistrado() {
         initComponents();
     }
 
@@ -29,57 +29,52 @@ public class EditarProveedor extends javax.swing.JFrame {
 
         pnGeneral = new javax.swing.JPanel();
         pnVerProveedores = new javax.swing.JPanel();
-        lblRut = new javax.swing.JLabel();
-        txtPlazoCobro = new javax.swing.JTextField();
-        lblNombre = new javax.swing.JLabel();
-        lblPlazoCobro = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        txtRut = new javax.swing.JTextField();
-        lblBuscarProveedor3 = new javax.swing.JLabel();
+        lblMonto = new javax.swing.JLabel();
+        lblNumeroFactura = new javax.swing.JLabel();
+        lblEstado = new javax.swing.JLabel();
+        txtNumeroFactura = new javax.swing.JTextField();
+        txtMonto = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        cmbEstado = new javax.swing.JComboBox<>();
         pnBanner = new javax.swing.JPanel();
-        lblProveedores = new javax.swing.JLabel();
+        lblCheques = new javax.swing.JLabel();
         lblBienvenido = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
+        lblNumeroCheque = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(574, 465));
-        setPreferredSize(new java.awt.Dimension(574, 465));
 
         pnVerProveedores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblRut.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblRut.setText("Rut");
+        lblMonto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblMonto.setText("Monto");
 
-        txtPlazoCobro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txtPlazoCobro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPlazoCobroActionPerformed(evt);
-            }
-        });
+        lblNumeroFactura.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblNumeroFactura.setText("N° Factura");
 
-        lblNombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblNombre.setText("Nombre");
+        lblEstado.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblEstado.setText("Estado");
 
-        lblPlazoCobro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblPlazoCobro.setText("Plazo cobro");
+        txtNumeroFactura.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
-        txtNombre.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-
-        txtRut.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-
-        lblBuscarProveedor3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblBuscarProveedor3.setText("días");
+        txtMonto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         btnIngresar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnIngresar.setText("Guardar");
         btnIngresar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.setPreferredSize(new java.awt.Dimension(150, 50));
+
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout pnVerProveedoresLayout = new javax.swing.GroupLayout(pnVerProveedores);
         pnVerProveedores.setLayout(pnVerProveedoresLayout);
@@ -88,17 +83,14 @@ public class EditarProveedor extends javax.swing.JFrame {
             .addGroup(pnVerProveedoresLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPlazoCobro, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRut, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67)
                 .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnVerProveedoresLayout.createSequentialGroup()
-                        .addComponent(txtPlazoCobro, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblBuscarProveedor3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNumeroFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(cmbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(pnVerProveedoresLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -112,18 +104,17 @@ public class EditarProveedor extends javax.swing.JFrame {
             .addGroup(pnVerProveedoresLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRut)
-                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblMonto)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNumeroFactura)
+                    .addComponent(txtNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPlazoCobro)
-                    .addComponent(txtPlazoCobro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBuscarProveedor3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                    .addComponent(lblEstado)
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -132,8 +123,8 @@ public class EditarProveedor extends javax.swing.JFrame {
 
         pnBanner.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblProveedores.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblProveedores.setText("Proveedores");
+        lblCheques.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblCheques.setText("Cheque N°");
 
         lblBienvenido.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblBienvenido.setText("Bienvenido: ");
@@ -145,6 +136,9 @@ public class EditarProveedor extends javax.swing.JFrame {
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chequespamacri/Img/my-shop-logo-1550807958.jpg"))); // NOI18N
         lblLogo.setMaximumSize(new java.awt.Dimension(1000, 800));
 
+        lblNumeroCheque.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblNumeroCheque.setText("N° Cheque");
+
         javax.swing.GroupLayout pnBannerLayout = new javax.swing.GroupLayout(pnBanner);
         pnBanner.setLayout(pnBannerLayout);
         pnBannerLayout.setHorizontalGroup(
@@ -153,11 +147,16 @@ public class EditarProveedor extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblBienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                    .addComponent(lblNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnBannerLayout.createSequentialGroup()
+                        .addComponent(lblCheques, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblBienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                            .addComponent(lblNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(pnBannerLayout.createSequentialGroup()
+                        .addComponent(lblNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         pnBannerLayout.setVerticalGroup(
             pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +169,9 @@ public class EditarProveedor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombreUsuario)
-                            .addComponent(lblProveedores))
+                            .addComponent(lblCheques))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblNumeroCheque)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -209,9 +210,9 @@ public class EditarProveedor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPlazoCobroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlazoCobroActionPerformed
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPlazoCobroActionPerformed
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,20 +231,20 @@ public class EditarProveedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarChequeRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarChequeRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarChequeRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarChequeRegistrado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarProveedor().setVisible(true);
+                new EditarChequeRegistrado().setVisible(true);
             }
         });
     }
@@ -251,19 +252,19 @@ public class EditarProveedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JLabel lblBienvenido;
-    private javax.swing.JLabel lblBuscarProveedor3;
+    private javax.swing.JLabel lblCheques;
+    private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblLogo;
-    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblMonto;
     private javax.swing.JLabel lblNombreUsuario;
-    private javax.swing.JLabel lblPlazoCobro;
-    private javax.swing.JLabel lblProveedores;
-    private javax.swing.JLabel lblRut;
+    private javax.swing.JLabel lblNumeroCheque;
+    private javax.swing.JLabel lblNumeroFactura;
     private javax.swing.JPanel pnBanner;
     private javax.swing.JPanel pnGeneral;
     private javax.swing.JPanel pnVerProveedores;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPlazoCobro;
-    private javax.swing.JTextField txtRut;
+    private javax.swing.JTextField txtMonto;
+    private javax.swing.JTextField txtNumeroFactura;
     // End of variables declaration//GEN-END:variables
 }

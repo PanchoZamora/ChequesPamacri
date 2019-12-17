@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chequespamacri.Vistas.Proveedor;
+package chequespamacri.Vistas.Cheque.Incompletos;
 
 /**
  *
  * @author sebai
  */
-public class MenuProveedores extends javax.swing.JFrame {
+public class ListarChequesIncompletos extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuProveedores
+     * Creates new form ListarChequesIncompletos
      */
-    public MenuProveedores() {
+    public ListarChequesIncompletos() {
         initComponents();
     }
 
@@ -28,16 +28,16 @@ public class MenuProveedores extends javax.swing.JFrame {
     private void initComponents() {
 
         pnGeneral = new javax.swing.JPanel();
-        pnVerProveedores = new javax.swing.JPanel();
+        pnVerCheques = new javax.swing.JPanel();
         pnFormulario = new javax.swing.JPanel();
-        lblBuscarProveedor = new javax.swing.JLabel();
-        txtBuscarProveedor = new javax.swing.JTextField();
-        btnNuevoProveedor = new javax.swing.JButton();
+        lblBuscarCheque = new javax.swing.JLabel();
+        txtNumeroCheque = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
-        spProveedores = new javax.swing.JScrollPane();
-        tblProveedores = new javax.swing.JTable();
-        btnEditar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        spChequesIncompletos = new javax.swing.JScrollPane();
+        tblChequesIncompletos = new javax.swing.JTable();
+        btnEditarCheque = new javax.swing.JButton();
+        lblBuscarCheque1 = new javax.swing.JLabel();
+        txtFechaCheque = new javax.swing.JTextField();
         pnBanner = new javax.swing.JPanel();
         lblProveedores = new javax.swing.JLabel();
         lblBienvenido = new javax.swing.JLabel();
@@ -46,39 +46,37 @@ public class MenuProveedores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnVerProveedores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnVerCheques.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblBuscarProveedor.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblBuscarProveedor.setText("Buscar Proveedor");
+        lblBuscarCheque.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblBuscarCheque.setText("Buscar cheque");
 
-        txtBuscarProveedor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txtBuscarProveedor.setText("RUT");
-
-        btnNuevoProveedor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btnNuevoProveedor.setText("Nuevo Proveedor");
-        btnNuevoProveedor.setPreferredSize(new java.awt.Dimension(150, 50));
+        txtNumeroCheque.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txtNumeroCheque.setText("N° Cheque");
 
         btnVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.setPreferredSize(new java.awt.Dimension(150, 50));
 
-        tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
+        tblChequesIncompletos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Rut", "Nombre", "Plazo"
+                "Fecha", "N° Cheque", "Monto", "Nombre Proveedor", "Rut Proveedor", "Factura", "Fecha Cobro", "Estado"
             }
         ));
-        spProveedores.setViewportView(tblProveedores);
+        spChequesIncompletos.setViewportView(tblChequesIncompletos);
 
-        btnEditar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btnEditar.setText("Editar");
-        btnEditar.setPreferredSize(new java.awt.Dimension(120, 50));
+        btnEditarCheque.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnEditarCheque.setText("Editar");
+        btnEditarCheque.setPreferredSize(new java.awt.Dimension(120, 50));
 
-        btnEliminar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.setPreferredSize(new java.awt.Dimension(120, 50));
+        lblBuscarCheque1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblBuscarCheque1.setText("Buscar cheque");
+
+        txtFechaCheque.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txtFechaCheque.setText("Fecha");
 
         javax.swing.GroupLayout pnFormularioLayout = new javax.swing.GroupLayout(pnFormulario);
         pnFormulario.setLayout(pnFormularioLayout);
@@ -87,61 +85,60 @@ public class MenuProveedores extends javax.swing.JFrame {
             .addGroup(pnFormularioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spProveedores)
+                    .addComponent(spChequesIncompletos)
                     .addGroup(pnFormularioLayout.createSequentialGroup()
-                        .addComponent(lblBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnFormularioLayout.createSequentialGroup()
+                                .addComponent(lblBuscarCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnFormularioLayout.createSequentialGroup()
+                                .addComponent(lblBuscarCheque1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtFechaCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                        .addComponent(btnEditarCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFormularioLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(pnFormularioLayout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
-                .addComponent(btnNuevoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(223, Short.MAX_VALUE))
         );
         pnFormularioLayout.setVerticalGroup(
             pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFormularioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                .addComponent(spChequesIncompletos, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnFormularioLayout.createSequentialGroup()
                         .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBuscarProveedor)
-                            .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1))
-                    .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblBuscarCheque)
+                            .addComponent(txtNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblBuscarCheque1)
+                            .addComponent(txtFechaCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnEditarCheque, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout pnVerProveedoresLayout = new javax.swing.GroupLayout(pnVerProveedores);
-        pnVerProveedores.setLayout(pnVerProveedoresLayout);
-        pnVerProveedoresLayout.setHorizontalGroup(
-            pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnVerChequesLayout = new javax.swing.GroupLayout(pnVerCheques);
+        pnVerCheques.setLayout(pnVerChequesLayout);
+        pnVerChequesLayout.setHorizontalGroup(
+            pnVerChequesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnFormulario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        pnVerProveedoresLayout.setVerticalGroup(
-            pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnVerProveedoresLayout.createSequentialGroup()
-                .addComponent(pnFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+        pnVerChequesLayout.setVerticalGroup(
+            pnVerChequesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pnBanner.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lblProveedores.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblProveedores.setText("Proveedores");
+        lblProveedores.setText("Cheques incompletos");
 
         lblBienvenido.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblBienvenido.setText("Bienvenido: ");
@@ -161,7 +158,7 @@ public class MenuProveedores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblBienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
@@ -187,31 +184,30 @@ public class MenuProveedores extends javax.swing.JFrame {
         pnGeneral.setLayout(pnGeneralLayout);
         pnGeneralLayout.setHorizontalGroup(
             pnGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnGeneralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnVerProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(pnBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnVerCheques, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnGeneralLayout.setVerticalGroup(
             pnGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnGeneralLayout.createSequentialGroup()
                 .addComponent(pnBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnVerProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnVerCheques, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -234,40 +230,40 @@ public class MenuProveedores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarChequesIncompletos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarChequesIncompletos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarChequesIncompletos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarChequesIncompletos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuProveedores().setVisible(true);
+                new ListarChequesIncompletos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnNuevoProveedor;
+    private javax.swing.JButton btnEditarCheque;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblBienvenido;
-    private javax.swing.JLabel lblBuscarProveedor;
+    private javax.swing.JLabel lblBuscarCheque;
+    private javax.swing.JLabel lblBuscarCheque1;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblProveedores;
     private javax.swing.JPanel pnBanner;
     private javax.swing.JPanel pnFormulario;
     private javax.swing.JPanel pnGeneral;
-    private javax.swing.JPanel pnVerProveedores;
-    private javax.swing.JScrollPane spProveedores;
-    private javax.swing.JTable tblProveedores;
-    private javax.swing.JTextField txtBuscarProveedor;
+    private javax.swing.JPanel pnVerCheques;
+    private javax.swing.JScrollPane spChequesIncompletos;
+    private javax.swing.JTable tblChequesIncompletos;
+    private javax.swing.JTextField txtFechaCheque;
+    private javax.swing.JTextField txtNumeroCheque;
     // End of variables declaration//GEN-END:variables
 }

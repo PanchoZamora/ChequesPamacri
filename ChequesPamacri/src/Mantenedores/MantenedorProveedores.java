@@ -16,7 +16,12 @@ import java.sql.ResultSet;
  * @author franc
  */
 public class MantenedorProveedores {
-    
+    /*
+        public int ingresar(id)
+        public void modificiar(id)
+        public void eliminar(id)
+        public ArrayList listarProveedores()
+    */
     public MantenedorProveedores(){
         
     }

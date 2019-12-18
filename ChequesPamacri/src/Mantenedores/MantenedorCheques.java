@@ -10,5 +10,12 @@ package Mantenedores;
  * @author sebai
  */
 public class MantenedorCheques {
+    /*
     
+        public int ingresar(id)
+        public void modificiar(id)
+        public void eliminar(id)
+        public ArrayList listarCheques()
+        public ArrayList listarChequesSinCobrar(estado)
+    */
 }

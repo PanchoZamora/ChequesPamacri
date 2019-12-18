@@ -5,6 +5,9 @@
  */
 package chequespamacri.Vistas;
 
+import chequespamacri.Biblioteca.Usuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sebai
@@ -14,8 +17,18 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form PaginaPrincipal
      */
-    public PaginaPrincipal() {
+    private Usuario usrConectado;
+    public PaginaPrincipal(Usuario usr) {
         initComponents();
+        this.usrConectado = usr;
+        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        this.setLocationRelativeTo(null);
+        
+        if(usrConectado.getRol().equalsIgnoreCase("Administrador")){
+            //btnAdministrador.setVisible(true);
+            System.out.println("Logueado como administrador");
+            JOptionPane.showMessageDialog(rootPane, "Bienvenido: " + usrConectado.getNombre());
+        }
     }
 
     /**
@@ -44,17 +57,21 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         btnVerDatosFaltantes = new javax.swing.JButton();
         pnBanner = new javax.swing.JPanel();
         lblGesionCheques = new javax.swing.JLabel();
-        lblBienvenido = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         pnPaginaPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnIngresoCheques.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnIngresoCheques.setText("Ingreso de cheques");
         btnIngresoCheques.setPreferredSize(new java.awt.Dimension(180, 50));
+        btnIngresoCheques.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresoChequesActionPerformed(evt);
+            }
+        });
 
         btnProveedores.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnProveedores.setText("Proveedores");
@@ -69,6 +86,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         btnChequesRegistrados.setText("Cheques registrados");
         btnChequesRegistrados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnChequesRegistrados.setPreferredSize(new java.awt.Dimension(180, 50));
+        btnChequesRegistrados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChequesRegistradosActionPerformed(evt);
+            }
+        });
 
         lblInformaciones.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblInformaciones.setText("Informaciones");
@@ -176,9 +198,6 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         lblGesionCheques.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblGesionCheques.setText("Gestión de cheques");
 
-        lblBienvenido.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblBienvenido.setText("Bienvenido: ");
-
         lblNombreUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblNombreUsuario.setText(" ");
 
@@ -195,10 +214,8 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblGesionCheques, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblBienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                    .addComponent(lblNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(lblNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnBannerLayout.setVerticalGroup(
             pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,8 +224,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnBannerLayout.createSequentialGroup()
-                        .addComponent(lblBienvenido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(21, 21, 21)
                         .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombreUsuario)
                             .addComponent(lblGesionCheques))
@@ -251,8 +267,19 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-        // TODO add your handling code here:
+        chequespamacri.Vistas.Proveedor.ListarProveedores proveedor = new chequespamacri.Vistas.Proveedor.ListarProveedores(usrConectado);
+        proveedor.setVisible(true);
     }//GEN-LAST:event_btnProveedoresActionPerformed
+
+    private void btnIngresoChequesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoChequesActionPerformed
+        chequespamacri.Vistas.Cheque.IngresoCheques ingresoCheques = new chequespamacri.Vistas.Cheque.IngresoCheques(usrConectado);
+        ingresoCheques.setVisible(true);
+    }//GEN-LAST:event_btnIngresoChequesActionPerformed
+
+    private void btnChequesRegistradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChequesRegistradosActionPerformed
+        chequespamacri.Vistas.Cheque.ListarChequesRegistrados cheques = new chequespamacri.Vistas.Cheque.ListarChequesRegistrados(usrConectado);
+        cheques.setVisible(true);
+    }//GEN-LAST:event_btnChequesRegistradosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,7 +311,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PaginaPrincipal().setVisible(true);
+                new PaginaPrincipal(null).setVisible(true);
             }
         });
     }
@@ -295,7 +322,6 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresoCheques;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnVerDatosFaltantes;
-    private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblExisten1;
     private javax.swing.JLabel lblExisten2;
     private javax.swing.JLabel lblGesionCheques;

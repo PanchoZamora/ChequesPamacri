@@ -5,6 +5,8 @@
  */
 package chequespamacri.Vistas.Cheque.SinCobrar;
 
+import chequespamacri.Biblioteca.Usuario;
+
 /**
  *
  * @author sebai
@@ -14,8 +16,12 @@ public class VerChequeSinCobrar extends javax.swing.JFrame {
     /**
      * Creates new form VerChequeSinCobrar
      */
-    public VerChequeSinCobrar() {
+    private Usuario usrConectado;
+    public VerChequeSinCobrar(Usuario usr) {
         initComponents();
+        
+        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -39,7 +45,6 @@ public class VerChequeSinCobrar extends javax.swing.JFrame {
         txtNumeroFactura1 = new javax.swing.JTextField();
         pnBanner = new javax.swing.JPanel();
         lblCheque = new javax.swing.JLabel();
-        lblBienvenido = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
         lblNumeroCheque1 = new javax.swing.JLabel();
@@ -79,12 +84,12 @@ public class VerChequeSinCobrar extends javax.swing.JFrame {
                     .addGroup(pnFormularioLayout.createSequentialGroup()
                         .addComponent(lblNumeroFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnFormularioLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(pnFormularioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnFormularioLayout.setVerticalGroup(
             pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,9 +115,9 @@ public class VerChequeSinCobrar extends javax.swing.JFrame {
         pnIngresoChequesLayout.setHorizontalGroup(
             pnIngresoChequesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnIngresoChequesLayout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnIngresoChequesLayout.setVerticalGroup(
             pnIngresoChequesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,9 +131,6 @@ public class VerChequeSinCobrar extends javax.swing.JFrame {
 
         lblCheque.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblCheque.setText("Cheque N°");
-
-        lblBienvenido.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblBienvenido.setText("Bienvenido: ");
 
         lblNombreUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblNombreUsuario.setText(" ");
@@ -152,9 +154,7 @@ public class VerChequeSinCobrar extends javax.swing.JFrame {
                     .addGroup(pnBannerLayout.createSequentialGroup()
                         .addComponent(lblCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblBienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                            .addComponent(lblNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnBannerLayout.createSequentialGroup()
                         .addComponent(lblNumeroCheque1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -166,8 +166,7 @@ public class VerChequeSinCobrar extends javax.swing.JFrame {
                 .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnBannerLayout.createSequentialGroup()
-                        .addComponent(lblBienvenido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(21, 21, 21)
                         .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombreUsuario)
                             .addComponent(lblCheque))
@@ -241,14 +240,13 @@ public class VerChequeSinCobrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VerChequeSinCobrar().setVisible(true);
+                new VerChequeSinCobrar(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblCheque;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreUsuario;

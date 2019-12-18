@@ -5,6 +5,8 @@
  */
 package chequespamacri.Vistas.Proveedor;
 
+import chequespamacri.Biblioteca.Usuario;
+
 /**
  *
  * @author sebai
@@ -14,8 +16,13 @@ public class ListarProveedores extends javax.swing.JFrame {
     /**
      * Creates new form MenuProveedores
      */
-    public ListarProveedores() {
+    private Usuario usrConectado;
+    public ListarProveedores(Usuario usr) {
         initComponents();
+        usrConectado = usr;
+        
+        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -40,11 +47,10 @@ public class ListarProveedores extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         pnBanner = new javax.swing.JPanel();
         lblProveedores = new javax.swing.JLabel();
-        lblBienvenido = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         pnVerProveedores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -141,9 +147,6 @@ public class ListarProveedores extends javax.swing.JFrame {
         lblProveedores.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblProveedores.setText("Proveedores");
 
-        lblBienvenido.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblBienvenido.setText("Bienvenido: ");
-
         lblNombreUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblNombreUsuario.setText(" ");
 
@@ -160,10 +163,8 @@ public class ListarProveedores extends javax.swing.JFrame {
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblBienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                    .addComponent(lblNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                .addComponent(lblNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnBannerLayout.setVerticalGroup(
             pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,8 +173,7 @@ public class ListarProveedores extends javax.swing.JFrame {
                 .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnBannerLayout.createSequentialGroup()
-                        .addComponent(lblBienvenido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(21, 21, 21)
                         .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombreUsuario)
                             .addComponent(lblProveedores))
@@ -248,7 +248,7 @@ public class ListarProveedores extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarProveedores().setVisible(true);
+                new ListarProveedores(null).setVisible(true);
             }
         });
     }
@@ -258,7 +258,6 @@ public class ListarProveedores extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNuevoProveedor;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblBuscarProveedor;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreUsuario;

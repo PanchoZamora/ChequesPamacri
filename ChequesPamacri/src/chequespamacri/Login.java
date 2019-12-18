@@ -128,8 +128,7 @@ public class Login extends javax.swing.JFrame {
             if(mantUsuario.validarUsuario(usrConectado)){
                 
                 usrConectado = mantUsuario.obtenerDatos(usrConectado);
-                
-                PaginaPrincipal programa = new PaginaPrincipal(usrConectado);
+                chequespamacri.Vistas.PaginaPrincipal programa = new chequespamacri.Vistas.PaginaPrincipal(usrConectado);
                 programa.setVisible(true);
                 this.setVisible(false);
             }

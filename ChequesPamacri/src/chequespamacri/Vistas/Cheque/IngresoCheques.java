@@ -5,6 +5,8 @@
  */
 package chequespamacri.Vistas.Cheque;
 
+import chequespamacri.Biblioteca.Usuario;
+
 /**
  *
  * @author sebai
@@ -14,8 +16,15 @@ public class IngresoCheques extends javax.swing.JFrame {
     /**
      * Creates new form IngresoCheques
      */
-    public IngresoCheques() {
+    private Usuario usrConectado;
+    public IngresoCheques(Usuario usr) {
         initComponents();
+        usrConectado = usr;
+        initCombos();
+        
+        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -34,7 +43,7 @@ public class IngresoCheques extends javax.swing.JFrame {
         lblProveedor = new javax.swing.JLabel();
         lblNumeroFactura = new javax.swing.JLabel();
         lblMonto = new javax.swing.JLabel();
-        vmbNumeroCheque = new javax.swing.JComboBox<>();
+        cmbNumeroCheque = new javax.swing.JComboBox<>();
         cmbProveedor = new javax.swing.JComboBox<>();
         txtNumeroFactura = new javax.swing.JTextField();
         txtMonto = new javax.swing.JTextField();
@@ -42,11 +51,10 @@ public class IngresoCheques extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         pnBanner = new javax.swing.JPanel();
         lblIngresoCheques = new javax.swing.JLabel();
-        lblBienvenido = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(596, 470));
 
         pnIngresoCheques.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -63,7 +71,7 @@ public class IngresoCheques extends javax.swing.JFrame {
         lblMonto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblMonto.setText("Monto");
 
-        vmbNumeroCheque.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbNumeroCheque.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -90,7 +98,7 @@ public class IngresoCheques extends javax.swing.JFrame {
                             .addComponent(lblMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(vmbNumeroCheque, 0, 244, Short.MAX_VALUE)
+                            .addComponent(cmbNumeroCheque, 0, 244, Short.MAX_VALUE)
                             .addComponent(cmbProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNumeroFactura)
                             .addComponent(txtMonto)))
@@ -108,7 +116,7 @@ public class IngresoCheques extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumeroCheque)
-                    .addComponent(vmbNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProveedor)
@@ -150,9 +158,6 @@ public class IngresoCheques extends javax.swing.JFrame {
         lblIngresoCheques.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblIngresoCheques.setText("Ingreso de Cheques");
 
-        lblBienvenido.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblBienvenido.setText("Bienvenido: ");
-
         lblNombreUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblNombreUsuario.setText(" ");
 
@@ -170,9 +175,7 @@ public class IngresoCheques extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblIngresoCheques, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblBienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                    .addComponent(lblNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(lblNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnBannerLayout.setVerticalGroup(
             pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,8 +184,7 @@ public class IngresoCheques extends javax.swing.JFrame {
                 .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnBannerLayout.createSequentialGroup()
-                        .addComponent(lblBienvenido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(21, 21, 21)
                         .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombreUsuario)
                             .addComponent(lblIngresoCheques))
@@ -254,7 +256,7 @@ public class IngresoCheques extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IngresoCheques().setVisible(true);
+                new IngresoCheques(null).setVisible(true);
             }
         });
     }
@@ -262,8 +264,8 @@ public class IngresoCheques extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cmbNumeroCheque;
     private javax.swing.JComboBox<String> cmbProveedor;
-    private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblIngresoCheques;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblMonto;
@@ -277,6 +279,10 @@ public class IngresoCheques extends javax.swing.JFrame {
     private javax.swing.JPanel pnIngresoCheques;
     private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txtNumeroFactura;
-    private javax.swing.JComboBox<String> vmbNumeroCheque;
     // End of variables declaration//GEN-END:variables
+
+    private void initCombos() {
+        cmbProveedor.removeAllItems();;
+        cmbNumeroCheque.removeAllItems();
+    }
 }

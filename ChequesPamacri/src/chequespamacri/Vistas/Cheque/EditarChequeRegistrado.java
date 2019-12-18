@@ -5,6 +5,8 @@
  */
 package chequespamacri.Vistas.Cheque;
 
+import chequespamacri.Biblioteca.Usuario;
+
 /**
  *
  * @author sebai
@@ -14,8 +16,12 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
     /**
      * Creates new form EditarChequeRegistrado
      */
-    public EditarChequeRegistrado() {
+    private Usuario usrConectado;
+    public EditarChequeRegistrado(Usuario usr) {
         initComponents();
+        usrConectado = usr;
+        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -39,7 +45,6 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
         cmbEstado = new javax.swing.JComboBox<>();
         pnBanner = new javax.swing.JPanel();
         lblCheques = new javax.swing.JLabel();
-        lblBienvenido = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
         lblNumeroCheque = new javax.swing.JLabel();
@@ -126,9 +131,6 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
         lblCheques.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblCheques.setText("Cheque N°");
 
-        lblBienvenido.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        lblBienvenido.setText("Bienvenido: ");
-
         lblNombreUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblNombreUsuario.setText(" ");
 
@@ -151,9 +153,7 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
                     .addGroup(pnBannerLayout.createSequentialGroup()
                         .addComponent(lblCheques, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblBienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
-                            .addComponent(lblNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnBannerLayout.createSequentialGroup()
                         .addComponent(lblNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -165,8 +165,7 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
                 .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnBannerLayout.createSequentialGroup()
-                        .addComponent(lblBienvenido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(21, 21, 21)
                         .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombreUsuario)
                             .addComponent(lblCheques))
@@ -244,7 +243,7 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarChequeRegistrado().setVisible(true);
+                new EditarChequeRegistrado(null).setVisible(true);
             }
         });
     }
@@ -253,7 +252,6 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cmbEstado;
-    private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblCheques;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblLogo;

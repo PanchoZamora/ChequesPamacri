@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -264,11 +264,8 @@
                       <Component id="lblLogo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblProveedores" min="-2" pref="186" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblBienvenido" alignment="0" pref="242" max="32767" attributes="0"/>
-                          <Component id="lblNombreUsuario" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="220" max="32767" attributes="0"/>
+                      <Component id="lblNombreUsuario" min="-2" pref="242" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -279,8 +276,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblLogo" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblBienvenido" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblNombreUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblProveedores" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -300,14 +296,6 @@
                   <Font name="Arial" size="18" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Proveedores"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblBienvenido">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="12" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Bienvenido: "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblNombreUsuario">

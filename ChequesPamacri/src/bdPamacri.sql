@@ -14,17 +14,17 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema pamacri
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `pamacri` DEFAULT CHARACTER SET utf8 ;
+CREATE DATABASE IF NOT EXISTS `pamacri` DEFAULT CHARACTER SET utf8 ;
 USE `pamacri` ;
 
 -- -----------------------------------------------------
 -- Table `pamacri`.`Proveedor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pamacri`.`Proveedor` (
-  `idProveedor` INT NOT NULL,
-  `rutProveedor` VARCHAR(45) NOT NULL,
-  `nombreProveedor` VARCHAR(45) NOT NULL,
-  `plazo` VARCHAR(45) NOT NULL,
+  `idProveedor` INT AUTO_INCREMENT,
+  `rutProveedor` VARCHAR(70) NOT NULL,
+  `nombreProveedor` VARCHAR(70) NOT NULL,
+  `plazo` INT NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idProveedor`))
 ENGINE = InnoDB;
@@ -34,18 +34,17 @@ ENGINE = InnoDB;
 -- Table `pamacri`.`Cheque`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pamacri`.`Cheque` (
-  `idCheque` INT NOT NULL,
-  `fecha` DATE NOT NULL,
+  `idCheque` INT NOT NULL AUTO_INCREMENT,
+  `fecha` DATETIME,
   `nroCheque` VARCHAR(45) NOT NULL,
-  `monto` INT NULL,
-  `cobro` DATE NULL,
-  `estado` VARCHAR(45) NULL,
+  `monto` INT ,
+  `cobro` DATETIME,
+  `estado` VARCHAR(45),
   `nroFactura` VARCHAR(45) NULL,
-  `Proveedor_idProveedor` INT NOT NULL,
+  `Proveedor_idProveedor` INT ,
   PRIMARY KEY (`idCheque`),
-  INDEX `fk_Cheque_Proveedor_idx` (`Proveedor_idProveedor` ASC) VISIBLE,
-  CONSTRAINT `fk_Cheque_Proveedor`
-    FOREIGN KEY (`Proveedor_idProveedor`)
+  
+  CONSTRAINT `fk_Cheque_Proveedor` FOREIGN KEY (`Proveedor_idProveedor`)
     REFERENCES `pamacri`.`Proveedor` (`idProveedor`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -56,7 +55,7 @@ ENGINE = InnoDB;
 -- Table `pamacri`.`Usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pamacri`.`Usuario` (
-  `idUsuario` INT NOT NULL,
+  `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   `correo` VARCHAR(45) NULL,
   `rol` VARCHAR(45) NULL,
@@ -69,3 +68,27 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- SUBIDA DE DATOS DESDE ARCHIVO DE PROVEEDORES ( EXCEL )
+
+LOAD DATA INFILE "Carga_Proveedores.csv" INTO TABLE pamacri.Proveedor
+FIELDS TERMINATED BY ';'
+LINES TERMINATED BY  '\r\n' 
+IGNORE 1 LINES
+(@nombreProveedor,@rutProveedor,@plazo,@tipo)
+SET nombreProveedor = @nombreProveedor,
+rutProveedor = @rutProveedor,
+plazo = @plazo,
+tipo = @tipo;
+
+
+LOAD DATA INFILE "Carga_Cheques.csv" INTO TABLE pamacri.Cheque
+FIELDS TERMINATED BY ';'
+LINES TERMINATED BY  '\r\n' 
+IGNORE 1 LINES
+(@fecha,@dummy,nroCheque,nroFactura,@monto,@dummy,@cobro,@proveedor)
+SET Proveedor_idProveedor = (SELECT idProveedor FROM proveedor WHERE nombreProveedor = @proveedor),
+fecha = @fecha, -- STR_TO_DATE(@fecha,'%d/%m/%Y'),
+monto = REPLACE(REPLACE(@monto,'$',''),'.',''),
+cobro = @cobro; -- STR_TO_DATE(@cobro,'%d/%m/%Y');

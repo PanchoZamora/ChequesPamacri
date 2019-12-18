@@ -24,8 +24,8 @@ public class TEST {
         
         System.out.println(prueba.getFechaEmision().getMonth());
         
-   
-        
+        Login nuevo = new Login();
+        nuevo.setVisible(true);
     }
     
     

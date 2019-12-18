@@ -63,6 +63,11 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
         btnVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.setPreferredSize(new java.awt.Dimension(150, 50));
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         tblChequesIncompletos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -212,6 +217,10 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments

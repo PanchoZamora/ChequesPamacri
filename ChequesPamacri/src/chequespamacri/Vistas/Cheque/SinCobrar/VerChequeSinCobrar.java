@@ -49,7 +49,7 @@ public class VerChequeSinCobrar extends javax.swing.JFrame {
         lblLogo = new javax.swing.JLabel();
         lblNumeroCheque1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         pnIngresoCheques.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 

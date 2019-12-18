@@ -49,7 +49,7 @@ public class EditarProveedor extends javax.swing.JFrame {
         lblNombreUsuario = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(574, 465));
         setPreferredSize(new java.awt.Dimension(574, 465));
 

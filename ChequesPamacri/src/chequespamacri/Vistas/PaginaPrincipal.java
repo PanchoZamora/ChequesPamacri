@@ -114,8 +114,18 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         lblTexto2.setText("cheques emitidos con datos faltantes");
 
         brnVerSinCobrar.setText("Ver");
+        brnVerSinCobrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                brnVerSinCobrarActionPerformed(evt);
+            }
+        });
 
         btnVerDatosFaltantes.setText("Ver");
+        btnVerDatosFaltantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerDatosFaltantesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnInformacionesLayout = new javax.swing.GroupLayout(pnInformaciones);
         pnInformaciones.setLayout(pnInformacionesLayout);
@@ -280,6 +290,16 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         chequespamacri.Vistas.Cheque.ListarChequesRegistrados cheques = new chequespamacri.Vistas.Cheque.ListarChequesRegistrados(usrConectado);
         cheques.setVisible(true);
     }//GEN-LAST:event_btnChequesRegistradosActionPerformed
+
+    private void brnVerSinCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnVerSinCobrarActionPerformed
+        chequespamacri.Vistas.Cheque.SinCobrar.ListarChequesSinCobrar chequesSinCobrar = new chequespamacri.Vistas.Cheque.SinCobrar.ListarChequesSinCobrar(usrConectado);
+        chequesSinCobrar.setVisible(true);
+    }//GEN-LAST:event_brnVerSinCobrarActionPerformed
+
+    private void btnVerDatosFaltantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDatosFaltantesActionPerformed
+        chequespamacri.Vistas.Cheque.Incompletos.ListarChequesIncompletos chequesIncompleto = new chequespamacri.Vistas.Cheque.Incompletos.ListarChequesIncompletos(usrConectado);
+        chequesIncompleto.setVisible(true);
+    }//GEN-LAST:event_btnVerDatosFaltantesActionPerformed
 
     /**
      * @param args the command line arguments

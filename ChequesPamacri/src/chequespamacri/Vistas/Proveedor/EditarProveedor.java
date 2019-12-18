@@ -85,6 +85,11 @@ public class EditarProveedor extends javax.swing.JFrame {
         btnVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.setPreferredSize(new java.awt.Dimension(150, 50));
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnVerProveedoresLayout = new javax.swing.GroupLayout(pnVerProveedores);
         pnVerProveedores.setLayout(pnVerProveedoresLayout);
@@ -211,6 +216,10 @@ public class EditarProveedor extends javax.swing.JFrame {
     private void txtPlazoCobroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlazoCobroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPlazoCobroActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments

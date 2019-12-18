@@ -6,9 +6,6 @@
 package chequespamacri;
 
 import chequespamacri.Biblioteca.*;
-import com.qoppa.office.ExcelConvertOptions;
-import com.qoppa.office.ExcelDocument;
-import com.qoppa.office.OfficeException;
 import java.awt.print.PrinterException;
 import java.io.IOException;
 
@@ -18,7 +15,7 @@ import java.io.IOException;
  */
 public class TEST {
     
-    public static void main(String[] args) throws IOException, OfficeException, PrinterException {
+    public static void main(String[] args) throws IOException, PrinterException {
         // TODO code application logic here
         
         // TEST 

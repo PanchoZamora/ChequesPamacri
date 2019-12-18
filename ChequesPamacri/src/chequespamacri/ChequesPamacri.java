@@ -39,13 +39,13 @@ public class ChequesPamacri {
         }*/
 
         try {
-                    MantenedorProveedores nuevoMantenedor = new MantenedorProveedores();
+            MantenedorProveedores nuevoMantenedor = new MantenedorProveedores();
         
         Proveedor aux = new Proveedor();
         
         aux.setRut("99.586.280-8 ");
         
-        aux = nuevoMantenedor.obtenerDatosPorRut(aux);
+        aux = nuevoMantenedor.obtenerDatos(aux);
         
         System.out.println("ID : " + aux.getId());
         System.out.println("Proveedor : " + aux.getNombre());

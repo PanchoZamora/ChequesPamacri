@@ -30,19 +30,18 @@ public class MantenedorCheques {
         ArrayList<Cheque> arrCheques = new ArrayList<>();
         
         Connection conn = conexion.getConnection();
-            String query = "INSERT INTO cheque (`fecha`, `nroCheque`, `monto`, `cobro`, `estado`, `nroFactura`, `Proveedor_idProveedor`) "
-                         + "VALUES (?,?,?,?,?,?,?)";
-            PreparedStatement stmt=conn.prepareStatement(query);
-            
-            stmt.setDate(1,java.sql.Date.valueOf(cheque.getFechaEmision()));
-            stmt.setString(2,cheque.getNroCheque());
-            stmt.setDouble(3,cheque.getMonto());
-            stmt.setDate(4,java.sql.Date.valueOf(cheque.getFechaCobro()));
-            stmt.setString(5,cheque.getEstado());
-            stmt.setString(6,cheque.getNroFactura());
-            stmt.setInt(7,cheque.getIdProveedor());
-            ResultSet rs=stmt.executeQuery();  
-            
+        String query = "INSERT INTO cheque (`fecha`, `nroCheque`, `monto`, `cobro`, `estado`, `nroFactura`, `Proveedor_idProveedor`) "
+                     + "VALUES (?,?,?,?,?,?,?)";
+        PreparedStatement stmt=conn.prepareStatement(query);
+
+        stmt.setDate(1,java.sql.Date.valueOf(cheque.getFechaEmision()));
+        stmt.setString(2,cheque.getNroCheque());
+        stmt.setDouble(3,cheque.getMonto());
+        stmt.setDate(4,java.sql.Date.valueOf(cheque.getFechaCobro()));
+        stmt.setString(5,cheque.getEstado());
+        stmt.setString(6,cheque.getNroFactura());
+        stmt.setInt(7,cheque.getIdProveedor());
+        ResultSet rs=stmt.executeQuery();  
             
     }
     
@@ -73,13 +72,9 @@ public class MantenedorCheques {
                 throw new Exception("No se ha encontrado nada");
             }
                 
-            
-            
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-        
-        
         
         return null;
     }

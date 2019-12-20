@@ -90,7 +90,23 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
             new String [] {
                 "Fecha", "N° Cheque", "Monto", "Nombre Proveedor", "Rut Proveedor", "Factura", "Fecha Cobro", "Estado"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblChequesRegistrados.getTableHeader().setReorderingAllowed(false);
         spCheques.setViewportView(tblChequesRegistrados);
 
         btnVerCheque.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N

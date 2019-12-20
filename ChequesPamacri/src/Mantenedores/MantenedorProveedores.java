@@ -186,7 +186,7 @@ public class MantenedorProveedores {
         try {
             
             Connection conn = conexion.getConnection();
-            String query = "select * from proveedores";
+            String query = "select * from proveedor";
             PreparedStatement stmt=conn.prepareStatement(query);
             
             

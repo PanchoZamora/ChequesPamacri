@@ -284,8 +284,14 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-        chequespamacri.Vistas.Proveedor.ListarProveedores proveedor = new chequespamacri.Vistas.Proveedor.ListarProveedores(usrConectado);
-        proveedor.setVisible(true);
+        chequespamacri.Vistas.Proveedor.ListarProveedores proveedor;
+        try {
+            proveedor = new chequespamacri.Vistas.Proveedor.ListarProveedores(usrConectado);
+            proveedor.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void btnIngresoChequesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoChequesActionPerformed

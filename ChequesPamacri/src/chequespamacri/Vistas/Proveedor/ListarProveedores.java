@@ -5,7 +5,15 @@
  */
 package chequespamacri.Vistas.Proveedor;
 
+import Biblioteca.Cheque;
+import Biblioteca.Proveedor;
 import Biblioteca.Usuario;
+import Mantenedores.MantenedorCheques;
+import Mantenedores.MantenedorProveedores;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,11 +25,16 @@ public class ListarProveedores extends javax.swing.JFrame {
      * Creates new form MenuProveedores
      */
     private Usuario usrConectado;
-    public ListarProveedores(Usuario usr) {
+    public ListarProveedores(Usuario usr) throws Exception {
         initComponents();
-        usrConectado = usr;
+        initTable();
+        try {
+            usrConectado = usr;
+            lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        } catch (Exception e) {
+            System.out.println("Usuario no conectado");
+        }
         
-        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
         this.setLocationRelativeTo(null);
     }
 
@@ -257,7 +270,11 @@ public class ListarProveedores extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarProveedores(null).setVisible(true);
+                try {
+                    new ListarProveedores(null).setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(ListarProveedores.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -279,4 +296,21 @@ public class ListarProveedores extends javax.swing.JFrame {
     private javax.swing.JTable tblProveedores;
     private javax.swing.JTextField txtBuscarProveedor;
     // End of variables declaration//GEN-END:variables
+
+    private void initTable() throws Exception {
+        MantenedorProveedores mp = new MantenedorProveedores();
+        DefaultTableModel model = (DefaultTableModel) tblProveedores.getModel();
+        ArrayList<Proveedor> listaProveedor = mp.listarProveedores();
+        model.setNumRows(0);
+        
+        Object rowData[] = new Object[3];
+        int i = 0;
+        for (Proveedor proveedor : listaProveedor) {
+                rowData[0] = proveedor.getRut();
+                rowData[1] = proveedor.getNombre();
+                rowData[2] = proveedor.getPlazo();                      
+                model.insertRow(i, rowData);
+                i++;    
+        }     
+    }
 }

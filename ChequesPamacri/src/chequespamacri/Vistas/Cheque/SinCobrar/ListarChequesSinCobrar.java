@@ -27,15 +27,17 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
     private Usuario usrConectado;
     public ListarChequesSinCobrar(Usuario usr) throws Exception {
         initComponents();
-        usrConectado = usr;
+        
         initTable();
+        this.setLocationRelativeTo(null);
         try {
+            usrConectado = usr;
             lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre()); 
         } catch (Exception e) {
             System.out.println("No hay usuario conectado");
         }
         
-        this.setLocationRelativeTo(null);
+        
     }
 
     /**

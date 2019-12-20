@@ -329,7 +329,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
                 rowData[3] = proveedor.getNombre();               
                 rowData[4] = proveedor.getRut();               
                 rowData[5] = cheque.getNroFactura();               
-                rowData[6] = cheque.getFechaCobro();               
+                rowData[6] = cheque.getFechaCobro().toString();               
                 rowData[7] = cheque.getEstado();               
                 model.insertRow(i, rowData);
                 i++;    

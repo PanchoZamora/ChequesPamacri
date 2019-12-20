@@ -64,5 +64,41 @@ public class MantenedorCheques {
         
     }
     
+    public ArrayList listarCheques() throws Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        ArrayList<Cheque> arrCheques = new ArrayList<>();
+        try {
+            
+            Connection conn = conexion.getConnection();
+            String query = "select * from cheque";
+            PreparedStatement stmt=conn.prepareStatement(query);
+            
+            
+            ResultSet rs=stmt.executeQuery();  
+            
+            
+            Cheque aux;
+            while (rs.next()) {                
+                aux = new Cheque();
+                aux.setId(rs.getInt(1));
+                aux.setFechaEmision(rs.getDate(2).toLocalDate());
+                aux.setNroCheque(rs.getString(3));
+                aux.setMonto(rs.getDouble(4));
+                aux.setFechaCobro(rs.getDate(5).toLocalDate());
+                aux.setEstado(rs.getString(6));
+                aux.setNroFactura(rs.getString(7));
+                aux.setIdProveedor(rs.getInt(8));
+                
+                arrCheques.add(aux);
+            }
+        
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        
+        return arrCheques;
+        
+    }
     
 }

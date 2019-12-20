@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package chequespamacri.Biblioteca;
+package Biblioteca;
 
 import java.time.*;
 import java.util.*;

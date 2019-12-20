@@ -5,7 +5,7 @@
  */
 package chequespamacri.Vistas;
 
-import chequespamacri.Biblioteca.Usuario;
+import Biblioteca.Usuario;
 import javax.swing.JOptionPane;
 
 /**

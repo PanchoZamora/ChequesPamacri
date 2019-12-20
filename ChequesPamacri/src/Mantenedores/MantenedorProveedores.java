@@ -6,7 +6,7 @@
 package Mantenedores;
 
 import Conexion.ConexionBD;
-import chequespamacri.Biblioteca.Proveedor;
+import Biblioteca.Proveedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

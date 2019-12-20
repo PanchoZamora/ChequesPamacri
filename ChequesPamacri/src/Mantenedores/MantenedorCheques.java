@@ -10,7 +10,9 @@ import Biblioteca.Cheque;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLType;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -82,6 +84,40 @@ public class MantenedorCheques {
             PreparedStatement stmt=conn.prepareStatement(query);
             
             stmt.setInt(1,idCheque);
+            ResultSet rs=stmt.executeQuery();  
+            Cheque obtenido = new Cheque();
+            if (rs.next()) {
+                obtenido.setId(rs.getInt(1));
+                obtenido.setFechaEmision(rs.getDate(2).toLocalDate());
+                obtenido.setNroCheque(rs.getString(3));
+                obtenido.setMonto(rs.getInt(4));
+                obtenido.setFechaCobro(rs.getDate(5).toLocalDate());
+                obtenido.setEstado(rs.getString(6));
+                obtenido.setNroFactura(rs.getString(7));
+                obtenido.setIdProveedor(rs.getInt(8));
+            }
+            else{
+                throw new Exception("No se ha encontrado nada");
+            }
+                
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        
+        return null;
+    }
+    
+    public Cheque obtenerChequePorNroCheque(int nroCheque) throws Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        
+        try {
+            
+            Connection conn = conexion.getConnection();
+            String query = "select * from cheque where nroCheque = ?";
+            PreparedStatement stmt=conn.prepareStatement(query);
+            
+            stmt.setInt(1,nroCheque);
             ResultSet rs=stmt.executeQuery();  
             Cheque obtenido = new Cheque();
             if (rs.next()) {
@@ -189,6 +225,46 @@ public class MantenedorCheques {
         stmt.setInt(1,idCheque);
         
         ResultSet rs=stmt.executeQuery();  
+        
+    }
+    
+    // Busquedas dinamicas
+    
+    
+    public ArrayList listarChequesPorFecha(LocalDate fecha) throws Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        ArrayList<Cheque> arrCheques = new ArrayList<>();
+        try {
+            
+            Connection conn = conexion.getConnection();
+            String query = "select * from cheque where fecha = ?";
+            PreparedStatement stmt=conn.prepareStatement(query);
+            
+            stmt.setDate(1,java.sql.Date.valueOf(fecha));
+            ResultSet rs=stmt.executeQuery();  
+            
+            
+            Cheque aux;
+            while (rs.next()) {                
+                aux = new Cheque();
+                aux.setId(rs.getInt(1));
+                aux.setFechaEmision(rs.getDate(2).toLocalDate());
+                aux.setNroCheque(rs.getString(3));
+                aux.setMonto(rs.getDouble(4));
+                aux.setFechaCobro(rs.getDate(5).toLocalDate());
+                aux.setEstado(rs.getString(6));
+                aux.setNroFactura(rs.getString(7));
+                aux.setIdProveedor(rs.getInt(8));
+                
+                arrCheques.add(aux);
+            }
+        
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        
+        return arrCheques;
         
     }
     

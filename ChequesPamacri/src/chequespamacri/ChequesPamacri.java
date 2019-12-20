@@ -45,7 +45,7 @@ public class ChequesPamacri {
         
         aux.setRut("99.586.280-8 ");
         
-        aux = nuevoMantenedor.obtenerDatos(aux);
+        aux = nuevoMantenedor.obtenerDatosPorRut("99.586.280-8");
         
         System.out.println("ID : " + aux.getId());
         System.out.println("Proveedor : " + aux.getNombre());

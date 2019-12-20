@@ -299,18 +299,18 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         MantenedorCheques mc = new MantenedorCheques();
         MantenedorProveedores mp = new MantenedorProveedores();
         DefaultTableModel model = (DefaultTableModel) tblChequesRegistrados.getModel();
-        ArrayList<Cheque> listaChequesSinCobrar = mc.listarChequesSinCobrar();
+        ArrayList<Cheque> listaCheques = mc.listarCheques();
         model.setNumRows(0);
         
         Object rowData[] = new Object[8];
         int i = 0;
-        for (Cheque cheque : listaChequesSinCobrar) {
-                Proveedor proveedor = mp.obtenerDatos(cheque.getIdProveedor());
+        for (Cheque cheque : listaCheques) {
+                Proveedor proveedor = mp.obtenerDatosPorId(cheque.getIdProveedor());
                 rowData[0] = cheque.getFechaEmision().toString();
                 rowData[1] = cheque.getNroCheque();
                 rowData[2] = cheque.getMonto();               
-                rowData[3] = proveedor.getId();               
-                rowData[4] = proveedor.getNombre();               
+                rowData[3] = proveedor.getNombre();               
+                rowData[4] = proveedor.getRut();               
                 rowData[5] = cheque.getNroFactura();               
                 rowData[6] = cheque.getFechaCobro();               
                 rowData[7] = cheque.getEstado();               

@@ -24,11 +24,16 @@ public class IngresoCheques extends javax.swing.JFrame {
     private Usuario usrConectado;
     public IngresoCheques(Usuario usr) {
         initComponents();
-        usrConectado = usr;
         initCombos();
         
-        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
         this.setLocationRelativeTo(null);
+        
+        try {
+            usrConectado = usr;
+            lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());  
+        } catch (Exception e) {
+            System.out.println("Sin usuario conectado");
+        }
         
     }
 
@@ -252,11 +257,13 @@ public class IngresoCheques extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         MantenedorCheques mc = new MantenedorCheques();
         MantenedorProveedores mp = new MantenedorProveedores();
+        Proveedor proveedor;
         Cheque ingresado = new Cheque();
         try {
+            proveedor = mp.obtenerDatosPorNombre(cmbProveedor.getSelectedItem().toString());
             ingresado.setNroCheque(txtNumeroCheque.getText());
             ingresado.setNroFactura(txtNumeroFactura.getText());
-            ingresado.setIdProveedor(mp.obtenerProveedorNombre(cmbProveedor.getSelectedItem().toString()));
+            ingresado.setIdProveedor(proveedor.getId());
             ingresado.setMonto(Double.parseDouble(txtMonto.getText()));
             mc.ingresar(ingresado);
         } catch (Exception e) {
@@ -324,7 +331,7 @@ public class IngresoCheques extends javax.swing.JFrame {
         MantenedorProveedores mp = new MantenedorProveedores();
         ArrayList<Proveedor> listaProveedores = new ArrayList();
         try {
-            listaProveedores = mp.obtenerProveedores();
+            listaProveedores = mp.listarProveedores();
             for (Proveedor proveedor : listaProveedores) {
                 cmbProveedor.addItem(proveedor.getNombre());
             }

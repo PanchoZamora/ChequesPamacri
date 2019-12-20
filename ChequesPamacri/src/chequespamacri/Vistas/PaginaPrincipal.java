@@ -6,6 +6,8 @@
 package chequespamacri.Vistas;
 
 import Biblioteca.Usuario;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,15 +22,20 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private Usuario usrConectado;
     public PaginaPrincipal(Usuario usr) {
         initComponents();
-        this.usrConectado = usr;
-        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+
         this.setLocationRelativeTo(null);
-        
-        if(usrConectado.getRol().equalsIgnoreCase("Administrador")){
-            //btnAdministrador.setVisible(true);
-            System.out.println("Logueado como administrador");
-            JOptionPane.showMessageDialog(rootPane, "Bienvenido: " + usrConectado.getNombre());
+        try {
+           this.usrConectado = usr;
+           if(usrConectado.getRol().equalsIgnoreCase("Administrador")){
+                //btnAdministrador.setVisible(true);
+                lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+                System.out.println("Logueado como administrador");
+                JOptionPane.showMessageDialog(rootPane, "Bienvenido: " + usrConectado.getNombre());
+            } 
+        } catch (Exception e) {
+            System.out.println("Ningún usuario conectado");
         }
+        
     }
 
     /**
@@ -287,18 +294,36 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresoChequesActionPerformed
 
     private void btnChequesRegistradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChequesRegistradosActionPerformed
-        chequespamacri.Vistas.Cheque.ListarChequesRegistrados cheques = new chequespamacri.Vistas.Cheque.ListarChequesRegistrados(usrConectado);
-        cheques.setVisible(true);
+        chequespamacri.Vistas.Cheque.ListarChequesRegistrados cheques;
+        try {
+            cheques = new chequespamacri.Vistas.Cheque.ListarChequesRegistrados(usrConectado);
+            cheques.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnChequesRegistradosActionPerformed
 
     private void brnVerSinCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnVerSinCobrarActionPerformed
-        chequespamacri.Vistas.Cheque.SinCobrar.ListarChequesSinCobrar chequesSinCobrar = new chequespamacri.Vistas.Cheque.SinCobrar.ListarChequesSinCobrar(usrConectado);
-        chequesSinCobrar.setVisible(true);
+        chequespamacri.Vistas.Cheque.SinCobrar.ListarChequesSinCobrar chequesSinCobrar;
+        try {
+            chequesSinCobrar = new chequespamacri.Vistas.Cheque.SinCobrar.ListarChequesSinCobrar(usrConectado);
+            chequesSinCobrar.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_brnVerSinCobrarActionPerformed
 
     private void btnVerDatosFaltantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDatosFaltantesActionPerformed
-        chequespamacri.Vistas.Cheque.Incompletos.ListarChequesIncompletos chequesIncompleto = new chequespamacri.Vistas.Cheque.Incompletos.ListarChequesIncompletos(usrConectado);
-        chequesIncompleto.setVisible(true);
+        chequespamacri.Vistas.Cheque.Incompletos.ListarChequesIncompletos chequesIncompleto;
+        try {
+            chequesIncompleto = new chequespamacri.Vistas.Cheque.Incompletos.ListarChequesIncompletos(usrConectado);
+            chequesIncompleto.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnVerDatosFaltantesActionPerformed
 
     /**

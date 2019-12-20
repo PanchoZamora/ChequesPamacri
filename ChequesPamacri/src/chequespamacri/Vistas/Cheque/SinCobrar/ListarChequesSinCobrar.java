@@ -302,12 +302,12 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
         Object rowData[] = new Object[8];
         int i = 0;
         for (Cheque cheque : listaChequesSinCobrar) {
-                Proveedor proveedor = mp.obtenerDatos(cheque.getIdProveedor());
+                Proveedor proveedor = mp.obtenerDatosPorId(cheque.getIdProveedor());
                 rowData[0] = cheque.getFechaEmision().toString();
                 rowData[1] = cheque.getNroCheque();
                 rowData[2] = cheque.getMonto();               
-                rowData[3] = proveedor.getId();               
-                rowData[4] = proveedor.getNombre();               
+                rowData[3] = proveedor.getNombre();               
+                rowData[4] = proveedor.getRut();               
                 rowData[5] = cheque.getNroFactura();               
                 rowData[6] = cheque.getFechaCobro();               
                 rowData[7] = cheque.getEstado();               

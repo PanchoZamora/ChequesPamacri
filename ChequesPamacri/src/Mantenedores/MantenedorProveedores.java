@@ -141,6 +141,44 @@ public class MantenedorProveedores {
         }
     }
     
+    public Proveedor obtenerDatosPorId(int id) throws Exception {
+        
+        ConexionBD conexion = new ConexionBD();
+
+        try {
+            
+            Proveedor proveedorBuscado = new Proveedor();
+            
+            Connection conn = conexion.getConnection();
+            String query = "select * from proveedor where idProveedor = ?";
+            PreparedStatement stmt=conn.prepareStatement(query);
+            
+            stmt.setInt(1,id);
+            ResultSet rs=stmt.executeQuery();  
+            
+            if(rs.next()){
+                
+                proveedorBuscado.setId(rs.getInt(1)); // id
+                proveedorBuscado.setRut(rs.getString(2));
+                proveedorBuscado.setNombre(rs.getString(3));
+                proveedorBuscado.setPlazo(rs.getInt(4));
+                proveedorBuscado.setTipo(rs.getString(5));
+                conn.close(); 
+                
+                return proveedorBuscado;
+
+                
+            }
+            else{
+                conn.close(); 
+                return null;
+            }
+            
+        } catch (Exception ex) {
+            throw new Exception("ERROR: " + ex.getMessage());
+        }
+    }
+    
     public ArrayList listarProveedores() throws Exception{
         
         ConexionBD conexion = new ConexionBD();

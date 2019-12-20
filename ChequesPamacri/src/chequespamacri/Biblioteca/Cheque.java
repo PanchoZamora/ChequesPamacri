@@ -21,8 +21,9 @@ public class Cheque {
     private double monto;
     private String estado;
     private LocalDate fechaCobro;
+    private int idProveedor;
 
-    public Cheque(int id, String nroCheque, LocalDate fechaEmision, String nroFactura, double monto, String estado, LocalDate fechaCobro) {
+    public Cheque(int id, String nroCheque, LocalDate fechaEmision, String nroFactura, double monto, String estado, LocalDate fechaCobro,int idProveedor) {
         this.id = id;
         this.nroCheque = nroCheque;
         this.fechaEmision = fechaEmision;
@@ -30,6 +31,7 @@ public class Cheque {
         this.monto = monto;
         this.estado = estado;
         this.fechaCobro = fechaCobro;
+        this.idProveedor = idProveedor;
     }
 
     public Cheque() {
@@ -40,6 +42,7 @@ public class Cheque {
         this.monto = 0;
         this.estado = "";
         this.fechaCobro = null;
+        this.idProveedor = 0;
     }
 
     public int getId() {
@@ -97,8 +100,19 @@ public class Cheque {
     public void setFechaCobro(LocalDate fechaCobro) {
         this.fechaCobro = fechaCobro;
     }
-    
-    
+
+    public int getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    @Override
+    public String toString() {
+        return "Cheque{" + "id=" + id + ", nroCheque=" + nroCheque + ", fechaEmision=" + fechaEmision + ", nroFactura=" + nroFactura + ", monto=" + monto + ", estado=" + estado + ", fechaCobro=" + fechaCobro + ", idProveedor=" + idProveedor + '}';
+    }
     
     
     

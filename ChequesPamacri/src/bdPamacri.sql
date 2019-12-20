@@ -76,7 +76,7 @@ LOAD DATA INFILE "Carga_Proveedores.csv" INTO TABLE pamacri.Proveedor
 FIELDS TERMINATED BY ';'
 LINES TERMINATED BY  '\r\n' 
 IGNORE 1 LINES
-(@nombreProveedor,@rutProveedor,@plazo,@tipo)
+(@dummy,@nombreProveedor,@rutProveedor,@plazo,@tipo)
 SET nombreProveedor = @nombreProveedor,
 rutProveedor = @rutProveedor,
 plazo = @plazo,

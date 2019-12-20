@@ -19,15 +19,12 @@ import java.util.ArrayList;
  */
 public class MantenedorCheques {
     /*
-
-        public void modificiar(id)
         public void eliminar(id)
     */
     
     public void ingresar(Cheque cheque) throws Exception{
         
         ConexionBD conexion = new ConexionBD();
-        ArrayList<Cheque> arrCheques = new ArrayList<>();
         
         Connection conn = conexion.getConnection();
         String query = "INSERT INTO cheque (`fecha`, `nroCheque`, `monto`, `cobro`, `estado`, `nroFactura`, `Proveedor_idProveedor`) "
@@ -43,6 +40,35 @@ public class MantenedorCheques {
         stmt.setInt(7,cheque.getIdProveedor());
         ResultSet rs=stmt.executeQuery();  
             
+    }
+    
+    public void modificar(Cheque modificado) throws Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        
+        Connection conn = conexion.getConnection();
+        String query = "UPDATE cheque SET "
+                + " fecha = ? ,"
+                + " nroCheque = ? ,"
+                + " monto = ? ,"
+                + " cobro = ? ,"
+                + " estado = ? ,"
+                + " nroFactura = ? ,"
+                + " Proveedor_idProveedor = ? "
+                + " WHERE idCheque = ? ";
+        
+        PreparedStatement stmt=conn.prepareStatement(query);
+
+        stmt.setDate(1,java.sql.Date.valueOf(modificado.getFechaEmision()));
+        stmt.setString(2,modificado.getNroCheque());
+        stmt.setDouble(3,modificado.getMonto());
+        stmt.setDate(4,java.sql.Date.valueOf(modificado.getFechaCobro()));
+        stmt.setString(5,modificado.getEstado());
+        stmt.setString(6,modificado.getNroFactura());
+        stmt.setInt(7,modificado.getIdProveedor());
+        stmt.setInt(8, modificado.getId());
+        ResultSet rs=stmt.executeQuery();  
+        
     }
     
     public Cheque obtenerChequePorId(int idCheque) throws Exception{
@@ -152,5 +178,19 @@ public class MantenedorCheques {
         return arrCheques;
         
     }
+    
+    public void eliminar(int idCheque) throws Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        
+        Connection conn = conexion.getConnection();
+        String query = "Delete from cheque where idCheque = ?";
+        PreparedStatement stmt=conn.prepareStatement(query);
+        stmt.setInt(1,idCheque);
+        
+        ResultSet rs=stmt.executeQuery();  
+        
+    }
+    
     
 }

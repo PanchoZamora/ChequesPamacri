@@ -17,16 +17,53 @@ import java.util.ArrayList;
  * @author franc
  */
 public class MantenedorProveedores {
-    /*
-        public int ingresar(id)
-        public void modificiar(id)
-        public void eliminar(id)
-        public ArrayList listarProveedores()
-    */
+
     public MantenedorProveedores(){
         
     }
     
+    public void ingresar(Proveedor ingreso) throws Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        
+        Connection conn = conexion.getConnection();
+        String query = "INSERT INTO proveedor (`rutProveedor`, `nombreProveedor`, `plazo`, `tipo`) "
+                     + "VALUES (?,?,?,?)";
+        
+        PreparedStatement stmt=conn.prepareStatement(query);
+
+        stmt.setString(1,ingreso.getRut());
+        stmt.setString(2,ingreso.getNombre());
+        stmt.setInt(3,ingreso.getPlazo());
+        stmt.setString(4,ingreso.getTipo());
+        
+        ResultSet rs=stmt.executeQuery();  
+            
+    }
+    
+    public void modificar(Proveedor modificado) throws Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        Connection conn = conexion.getConnection();
+        String query = "UPDATE proveedor SET "
+                + " rutProveedor = ? ,"
+                + " nombreProveedor = ? ,"
+                + " plazo = ? ,"
+                + " tipo = ? "
+                + " WHERE idProveedor = ? ";
+        
+        PreparedStatement stmt=conn.prepareStatement(query);
+
+        stmt.setString(1,modificado.getRut());
+        stmt.setString(2,modificado.getNombre());
+        stmt.setInt(3,modificado.getPlazo());
+        stmt.setString(4,modificado.getTipo());
+        stmt.setInt(5,modificado.getId());
+        
+        
+        ResultSet rs=stmt.executeQuery();  
+        
+    }
     
     public Proveedor obtenerDatosPorRut(String rut) throws Exception {
         
@@ -121,17 +158,34 @@ public class MantenedorProveedores {
             Proveedor aux;
             while (rs.next()) {                
                 aux = new Proveedor();
-                aux.setId(rs.getInt(1));
-                aux.setRut(query);
+                aux.setId(rs.getInt(1)); // id
+                aux.setRut(rs.getString(2));
+                aux.setNombre(rs.getString(3));
+                aux.setPlazo(rs.getInt(4));
+                aux.setTipo(rs.getString(5));
                 
-                arrCheques.add(aux);
+                arrProveedores.add(aux);
             }
         
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
         
-        return arrCheques;
+        return arrProveedores;
         
     }
+    
+    public void eliminar(int idProveedor) throws Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        
+        Connection conn = conexion.getConnection();
+        String query = "Delete from proveedor where idProveedor = ?";
+        PreparedStatement stmt=conn.prepareStatement(query);
+        stmt.setInt(1,idProveedor);
+        
+        ResultSet rs=stmt.executeQuery();  
+        
+    }
+    
 }

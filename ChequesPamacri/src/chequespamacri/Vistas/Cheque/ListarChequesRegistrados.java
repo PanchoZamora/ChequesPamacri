@@ -83,6 +83,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
             }
         });
 
+        tblChequesRegistrados.setAutoCreateRowSorter(true);
         tblChequesRegistrados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -92,7 +93,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false

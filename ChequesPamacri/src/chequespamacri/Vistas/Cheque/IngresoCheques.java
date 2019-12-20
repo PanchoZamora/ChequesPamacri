@@ -5,7 +5,12 @@
  */
 package chequespamacri.Vistas.Cheque;
 
+import Biblioteca.Cheque;
+import Biblioteca.Proveedor;
 import Biblioteca.Usuario;
+import Mantenedores.MantenedorCheques;
+import Mantenedores.MantenedorProveedores;
+import java.util.ArrayList;
 
 /**
  *
@@ -43,12 +48,12 @@ public class IngresoCheques extends javax.swing.JFrame {
         lblProveedor = new javax.swing.JLabel();
         lblNumeroFactura = new javax.swing.JLabel();
         lblMonto = new javax.swing.JLabel();
-        cmbNumeroCheque = new javax.swing.JComboBox<>();
         cmbProveedor = new javax.swing.JComboBox<>();
         txtNumeroFactura = new javax.swing.JTextField();
         txtMonto = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        txtNumeroCheque = new javax.swing.JTextField();
         pnBanner = new javax.swing.JPanel();
         lblIngresoCheques = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
@@ -71,13 +76,20 @@ public class IngresoCheques extends javax.swing.JFrame {
         lblMonto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblMonto.setText("Monto");
 
-        cmbNumeroCheque.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtNumeroFactura.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+
+        txtMonto.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
         btnIngresar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnIngresar.setText("Ingresar");
         btnIngresar.setPreferredSize(new java.awt.Dimension(120, 50));
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnVolver.setText("Volver");
@@ -87,6 +99,8 @@ public class IngresoCheques extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
+
+        txtNumeroCheque.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout pnFormularioLayout = new javax.swing.GroupLayout(pnFormulario);
         pnFormulario.setLayout(pnFormularioLayout);
@@ -103,10 +117,10 @@ public class IngresoCheques extends javax.swing.JFrame {
                             .addComponent(lblMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbNumeroCheque, 0, 244, Short.MAX_VALUE)
-                            .addComponent(cmbProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbProveedor, 0, 244, Short.MAX_VALUE)
                             .addComponent(txtNumeroFactura)
-                            .addComponent(txtMonto)))
+                            .addComponent(txtMonto)
+                            .addComponent(txtNumeroCheque)))
                     .addGroup(pnFormularioLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                         .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,7 +135,7 @@ public class IngresoCheques extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNumeroCheque)
-                    .addComponent(cmbNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProveedor)
@@ -235,6 +249,21 @@ public class IngresoCheques extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        MantenedorCheques mc = new MantenedorCheques();
+        MantenedorProveedores mp = new MantenedorProveedores();
+        Cheque ingresado = new Cheque();
+        try {
+            ingresado.setNroCheque(txtNumeroCheque.getText());
+            ingresado.setNroFactura(txtNumeroFactura.getText());
+            ingresado.setIdProveedor(mp.obtenerProveedorNombre(cmbProveedor.getSelectedItem().toString()));
+            ingresado.setMonto(Double.parseDouble(txtMonto.getText()));
+            mc.ingresar(ingresado);
+        } catch (Exception e) {
+            System.out.println("No se ha ingresado el cheque");
+        }
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,7 +302,6 @@ public class IngresoCheques extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JComboBox<String> cmbNumeroCheque;
     private javax.swing.JComboBox<String> cmbProveedor;
     private javax.swing.JLabel lblIngresoCheques;
     private javax.swing.JLabel lblLogo;
@@ -287,11 +315,24 @@ public class IngresoCheques extends javax.swing.JFrame {
     private javax.swing.JPanel pnGeneral;
     private javax.swing.JPanel pnIngresoCheques;
     private javax.swing.JTextField txtMonto;
+    private javax.swing.JTextField txtNumeroCheque;
     private javax.swing.JTextField txtNumeroFactura;
     // End of variables declaration//GEN-END:variables
 
     private void initCombos() {
-        cmbProveedor.removeAllItems();;
-        cmbNumeroCheque.removeAllItems();
+        cmbProveedor.removeAllItems(); 
+        MantenedorProveedores mp = new MantenedorProveedores();
+        ArrayList<Proveedor> listaProveedores = new ArrayList();
+        try {
+            listaProveedores = mp.obtenerProveedores();
+            for (Proveedor proveedor : listaProveedores) {
+                cmbProveedor.addItem(proveedor.getNombre());
+            }
+        } catch (Exception e) {
+            System.out.println("No se pudo iniciar los datos de proveedores");
+        }
+        
+        
+        
     }
 }

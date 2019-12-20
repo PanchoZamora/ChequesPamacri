@@ -5,7 +5,7 @@
  */
 package chequespamacri.Vistas.Cheque;
 
-import chequespamacri.Biblioteca.Usuario;
+import Biblioteca.Usuario;
 
 /**
  *

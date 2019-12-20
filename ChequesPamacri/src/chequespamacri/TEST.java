@@ -5,8 +5,8 @@
  */
 package chequespamacri;
 
+import Biblioteca.Cheque;
 import Mantenedores.MantenedorCheques;
-import chequespamacri.Biblioteca.*;
 import java.awt.print.PrinterException;
 import java.io.IOException;
 import java.util.ArrayList;

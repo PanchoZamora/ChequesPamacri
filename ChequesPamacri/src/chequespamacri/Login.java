@@ -5,8 +5,8 @@
  */
 package chequespamacri;
 
+import Biblioteca.Usuario;
 import Mantenedores.MantenedorUsuario;
-import chequespamacri.Biblioteca.*;
 import javax.swing.JOptionPane;
 
 /**

@@ -8,7 +8,7 @@ package chequespamacri;
 import Conexion.ConexionBD;
 import Mantenedores.MantenedorProveedores;
 import Mantenedores.MantenedorUsuario;
-import chequespamacri.Biblioteca.Proveedor;
+import Biblioteca.Proveedor;
 import java.sql.SQLException;
 
 

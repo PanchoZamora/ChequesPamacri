@@ -5,7 +5,15 @@
  */
 package chequespamacri.Vistas.Cheque.SinCobrar;
 
-import chequespamacri.Biblioteca.Usuario;
+import Mantenedores.MantenedorCheques;
+import Biblioteca.Cheque;
+import Biblioteca.Proveedor;
+import Biblioteca.Usuario;
+import Mantenedores.MantenedorProveedores;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,11 +25,16 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
      * Creates new form VerChequesSinCobrar
      */
     private Usuario usrConectado;
-    public ListarChequesSinCobrar(Usuario usr) {
+    public ListarChequesSinCobrar(Usuario usr) throws Exception {
         initComponents();
         usrConectado = usr;
+        initTable();
+        try {
+            lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre()); 
+        } catch (Exception e) {
+            System.out.println("No hay usuario conectado");
+        }
         
-        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
         this.setLocationRelativeTo(null);
     }
 
@@ -40,11 +53,11 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
         lblBuscarCheque = new javax.swing.JLabel();
         txtNumeroCheque = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
-        spProveedores = new javax.swing.JScrollPane();
-        tblProveedores = new javax.swing.JTable();
         btnVerCheque = new javax.swing.JButton();
         lblBuscarCheque1 = new javax.swing.JLabel();
         txtFechaCheque = new javax.swing.JTextField();
+        spCheuqes = new javax.swing.JScrollPane();
+        tblChequesSinCobrar = new javax.swing.JTable();
         pnBanner = new javax.swing.JPanel();
         lblProveedores = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
@@ -69,16 +82,6 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
             }
         });
 
-        tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Fecha", "N° Cheque", "Monto", "Plazo", "Estado"
-            }
-        ));
-        spProveedores.setViewportView(tblProveedores);
-
         btnVerCheque.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnVerCheque.setText("Ver");
         btnVerCheque.setPreferredSize(new java.awt.Dimension(120, 50));
@@ -89,6 +92,16 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
         txtFechaCheque.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         txtFechaCheque.setText("Fecha");
 
+        tblChequesSinCobrar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Fecha", "N° Cheque", "Monto", "Nombre Proveedor", "Rut Proveedor", "Factura", "Fecha Cobro", "Estado"
+            }
+        ));
+        spCheuqes.setViewportView(tblChequesSinCobrar);
+
         javax.swing.GroupLayout pnFormularioLayout = new javax.swing.GroupLayout(pnFormulario);
         pnFormulario.setLayout(pnFormularioLayout);
         pnFormularioLayout.setHorizontalGroup(
@@ -96,7 +109,6 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
             .addGroup(pnFormularioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spProveedores)
                     .addGroup(pnFormularioLayout.createSequentialGroup()
                         .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnFormularioLayout.createSequentialGroup()
@@ -111,14 +123,14 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
                         .addComponent(btnVerCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFormularioLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spCheuqes))
                 .addContainerGap())
         );
         pnFormularioLayout.setVerticalGroup(
             pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFormularioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(spProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                .addComponent(spCheuqes, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnFormularioLayout.createSequentialGroup()
@@ -253,7 +265,11 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarChequesSinCobrar(null).setVisible(true);
+                try {
+                    new ListarChequesSinCobrar(null).setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(ListarChequesSinCobrar.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -270,9 +286,35 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
     private javax.swing.JPanel pnFormulario;
     private javax.swing.JPanel pnGeneral;
     private javax.swing.JPanel pnVerCheques;
-    private javax.swing.JScrollPane spProveedores;
-    private javax.swing.JTable tblProveedores;
+    private javax.swing.JScrollPane spCheuqes;
+    private javax.swing.JTable tblChequesSinCobrar;
     private javax.swing.JTextField txtFechaCheque;
     private javax.swing.JTextField txtNumeroCheque;
     // End of variables declaration//GEN-END:variables
+
+    private void initTable() throws Exception {
+        MantenedorCheques mc = new MantenedorCheques();
+        MantenedorProveedores mp = new MantenedorProveedores();
+        DefaultTableModel model = (DefaultTableModel) tblChequesSinCobrar.getModel();
+        ArrayList<Cheque> listaChequesSinCobrar = mc.listarChequesSinCobrar();
+        model.setNumRows(0);
+        
+        Object rowData[] = new Object[8];
+        int i = 0;
+        for (Cheque cheque : listaChequesSinCobrar) {
+                Proveedor proveedor = mp.obtenerDatos(cheque.getIdProveedor());
+                rowData[0] = cheque.getFechaEmision().toString();
+                rowData[1] = cheque.getNroCheque();
+                rowData[2] = cheque.getMonto();               
+                rowData[3] = proveedor.getId();               
+                rowData[4] = proveedor.getNombre();               
+                rowData[5] = cheque.getNroFactura();               
+                rowData[6] = cheque.getFechaCobro();               
+                rowData[7] = cheque.getEstado();               
+                model.insertRow(i, rowData);
+                i++;    
+        }      
+        
+        
+    }
 }

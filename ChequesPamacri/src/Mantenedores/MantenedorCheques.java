@@ -10,10 +10,12 @@ import Biblioteca.Cheque;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.SQLType;
 import java.sql.Types;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 
 /**
  *
@@ -36,12 +38,22 @@ public class MantenedorCheques {
         stmt.setDate(1,java.sql.Date.valueOf(cheque.getFechaEmision()));
         stmt.setString(2,cheque.getNroCheque());
         stmt.setDouble(3,cheque.getMonto());
-        stmt.setDate(4,java.sql.Date.valueOf(cheque.getFechaCobro()));
+        if (cheque.getFechaCobro()==null) {
+            stmt.setNull(4,Types.NULL);
+        }
+        else{
+            stmt.setDate(4,java.sql.Date.valueOf(cheque.getFechaCobro()));
+        }
         stmt.setString(5,cheque.getEstado());
         stmt.setString(6,cheque.getNroFactura());
         stmt.setInt(7,cheque.getIdProveedor());
-        ResultSet rs=stmt.executeQuery();  
-            
+        
+        int i = stmt.executeUpdate();
+        if (i > 0) {
+            System.out.println("Ingreso Exitoso");
+        } else {
+            throw new Exception("No se pudo ingresar");
+        }
     }
     
     public void modificar(Cheque modificado) throws Exception{
@@ -268,5 +280,36 @@ public class MantenedorCheques {
         
     }
     
+    public int cantidadChequesSinCobrar() throws SQLException, Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        
+        Connection conn = conexion.getConnection();
+        String query = "Select count(*) from cheque where estado = 'Sin Cobrar';";
+        PreparedStatement stmt=conn.prepareStatement(query);
+        
+        ResultSet rs=stmt.executeQuery();  
+        rs.next();
+        int cantidad = rs.getInt(1);
+        
+        return cantidad;
+        
+    }
+    
+    public int cantidadChequesIncompletos() throws SQLException, Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        
+        Connection conn = conexion.getConnection();
+        String query = "SELECT count(*) FROM `cheque` WHERE nroFactura is null OR cobro is null";
+        PreparedStatement stmt=conn.prepareStatement(query);
+        
+        ResultSet rs=stmt.executeQuery();  
+        rs.next();
+        int cantidad = rs.getInt(1);
+        
+        return cantidad;
+        
+    }
     
 }

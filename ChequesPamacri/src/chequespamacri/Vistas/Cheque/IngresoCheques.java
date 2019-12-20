@@ -265,9 +265,10 @@ public class IngresoCheques extends javax.swing.JFrame {
             ingresado.setNroFactura(txtNumeroFactura.getText());
             ingresado.setIdProveedor(proveedor.getId());
             ingresado.setMonto(Double.parseDouble(txtMonto.getText()));
+            ingresado.setEstado("Sin Cobrar"); // ESTADO POR DEFAULT
             mc.ingresar(ingresado);
         } catch (Exception e) {
-            System.out.println("No se ha ingresado el cheque");
+            System.out.println("No se ha ingresado el cheque : " + e.getMessage() + " / " + e.getLocalizedMessage() );
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 

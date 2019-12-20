@@ -6,6 +6,7 @@
 package chequespamacri.Vistas;
 
 import Biblioteca.Usuario;
+import Mantenedores.MantenedorCheques;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,7 +21,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
      * Creates new form PaginaPrincipal
      */
     private Usuario usrConectado;
-    public PaginaPrincipal(Usuario usr) {
+    public PaginaPrincipal(Usuario usr) throws Exception {
         initComponents();
 
         this.setLocationRelativeTo(null);
@@ -35,6 +36,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         } catch (Exception e) {
             System.out.println("Ningún usuario conectado");
         }
+        Mantenedores.MantenedorCheques mantCheques = new MantenedorCheques();
+        lblNumeroChequesSinCobrar.setText(Integer.toString(mantCheques.cantidadChequesSinCobrar()));
+        lblNumeroChequesDatosFaltantes.setText(Integer.toString(mantCheques.cantidadChequesIncompletos()));
         
     }
 
@@ -109,9 +113,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         lblExisten2.setText("Existen");
 
         lblNumeroChequesSinCobrar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblNumeroChequesSinCobrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumeroChequesSinCobrar.setText(" ");
 
         lblNumeroChequesDatosFaltantes.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lblNumeroChequesDatosFaltantes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumeroChequesDatosFaltantes.setText(" ");
 
         lblTexto1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -362,7 +368,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PaginaPrincipal(null).setVisible(true);
+                try {
+                    new PaginaPrincipal(null).setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

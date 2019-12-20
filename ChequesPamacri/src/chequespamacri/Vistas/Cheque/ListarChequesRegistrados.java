@@ -5,7 +5,15 @@
  */
 package chequespamacri.Vistas.Cheque;
 
+import Biblioteca.Cheque;
+import Biblioteca.Proveedor;
 import Biblioteca.Usuario;
+import Mantenedores.MantenedorCheques;
+import Mantenedores.MantenedorProveedores;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,11 +25,16 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
      * Creates new form ChequesRegistrados
      */
     private Usuario usrConectado;
-    public ListarChequesRegistrados(Usuario usr) {
+    public ListarChequesRegistrados(Usuario usr) throws Exception {
         initComponents();
         usrConectado = usr;
+        initTable();
+        try {
+            lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        } catch (Exception e) {
+            System.out.println("Usuario no conectado");
+        }
         
-        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
         this.setLocationRelativeTo(null);
         
     }
@@ -41,8 +54,8 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         lblBuscarCheque = new javax.swing.JLabel();
         txtNumeroCheque = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
-        spProveedores = new javax.swing.JScrollPane();
-        tblProveedores = new javax.swing.JTable();
+        spCheques = new javax.swing.JScrollPane();
+        tblChequesRegistrados = new javax.swing.JTable();
         btnVerCheque = new javax.swing.JButton();
         lblBuscarCheque1 = new javax.swing.JLabel();
         txtFechaCheque = new javax.swing.JTextField();
@@ -70,7 +83,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
             }
         });
 
-        tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
+        tblChequesRegistrados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -78,7 +91,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
                 "Fecha", "N° Cheque", "Monto", "Nombre Proveedor", "Rut Proveedor", "Factura", "Fecha Cobro", "Estado"
             }
         ));
-        spProveedores.setViewportView(tblProveedores);
+        spCheques.setViewportView(tblChequesRegistrados);
 
         btnVerCheque.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnVerCheque.setText("Ver");
@@ -97,7 +110,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
             .addGroup(pnFormularioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spProveedores)
+                    .addComponent(spCheques)
                     .addGroup(pnFormularioLayout.createSequentialGroup()
                         .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnFormularioLayout.createSequentialGroup()
@@ -119,7 +132,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
             pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFormularioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addComponent(spCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnFormularioLayout.createSequentialGroup()
@@ -256,7 +269,11 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarChequesRegistrados(null).setVisible(true);
+                try {
+                    new ListarChequesRegistrados(null).setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(ListarChequesRegistrados.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -273,9 +290,35 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
     private javax.swing.JPanel pnFormulario;
     private javax.swing.JPanel pnGeneral;
     private javax.swing.JPanel pnVerCheques;
-    private javax.swing.JScrollPane spProveedores;
-    private javax.swing.JTable tblProveedores;
+    private javax.swing.JScrollPane spCheques;
+    private javax.swing.JTable tblChequesRegistrados;
     private javax.swing.JTextField txtFechaCheque;
     private javax.swing.JTextField txtNumeroCheque;
     // End of variables declaration//GEN-END:variables
+    private void initTable() throws Exception {
+        MantenedorCheques mc = new MantenedorCheques();
+        MantenedorProveedores mp = new MantenedorProveedores();
+        DefaultTableModel model = (DefaultTableModel) tblChequesRegistrados.getModel();
+        ArrayList<Cheque> listaChequesSinCobrar = mc.listarChequesSinCobrar();
+        model.setNumRows(0);
+        
+        Object rowData[] = new Object[8];
+        int i = 0;
+        for (Cheque cheque : listaChequesSinCobrar) {
+                Proveedor proveedor = mp.obtenerDatos(cheque.getIdProveedor());
+                rowData[0] = cheque.getFechaEmision().toString();
+                rowData[1] = cheque.getNroCheque();
+                rowData[2] = cheque.getMonto();               
+                rowData[3] = proveedor.getId();               
+                rowData[4] = proveedor.getNombre();               
+                rowData[5] = cheque.getNroFactura();               
+                rowData[6] = cheque.getFechaCobro();               
+                rowData[7] = cheque.getEstado();               
+                model.insertRow(i, rowData);
+                i++;    
+        }      
+        
+        
+    }
+    
 }

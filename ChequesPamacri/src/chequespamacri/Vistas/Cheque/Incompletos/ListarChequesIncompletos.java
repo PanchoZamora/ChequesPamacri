@@ -5,7 +5,15 @@
  */
 package chequespamacri.Vistas.Cheque.Incompletos;
 
+import Biblioteca.Cheque;
+import Biblioteca.Proveedor;
 import Biblioteca.Usuario;
+import Mantenedores.MantenedorCheques;
+import Mantenedores.MantenedorProveedores;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,11 +25,16 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
      * Creates new form ListarChequesIncompletos
      */
     private Usuario usrConectado;
-    public ListarChequesIncompletos(Usuario usr) {
+    public ListarChequesIncompletos(Usuario usr) throws Exception {
         initComponents();
         usrConectado = usr;
+        initTable();
+        try {
+            lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        } catch (Exception e) {
+            System.out.println("Sin usuario conectado");
+        }
         
-        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
         this.setLocationRelativeTo(null);
     }
 
@@ -252,7 +265,11 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarChequesIncompletos(null).setVisible(true);
+                try {
+                    new ListarChequesIncompletos(null).setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(ListarChequesIncompletos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -274,4 +291,29 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
     private javax.swing.JTextField txtFechaCheque;
     private javax.swing.JTextField txtNumeroCheque;
     // End of variables declaration//GEN-END:variables
+    private void initTable() throws Exception {
+        MantenedorCheques mc = new MantenedorCheques();
+        MantenedorProveedores mp = new MantenedorProveedores();
+        DefaultTableModel model = (DefaultTableModel) tblChequesIncompletos.getModel();
+        ArrayList<Cheque> listaChequesSinCobrar = mc.listarChequesSinCobrar();
+        model.setNumRows(0);
+        
+        Object rowData[] = new Object[8];
+        int i = 0;
+        for (Cheque cheque : listaChequesSinCobrar) {
+                Proveedor proveedor = mp.obtenerDatos(cheque.getIdProveedor());
+                rowData[0] = cheque.getFechaEmision().toString();
+                rowData[1] = cheque.getNroCheque();
+                rowData[2] = cheque.getMonto();               
+                rowData[3] = proveedor.getId();               
+                rowData[4] = proveedor.getNombre();               
+                rowData[5] = cheque.getNroFactura();               
+                rowData[6] = cheque.getFechaCobro();               
+                rowData[7] = cheque.getEstado();               
+                model.insertRow(i, rowData);
+                i++;    
+        }      
+        
+        
+    }
 }

@@ -96,6 +96,11 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
         btnEditarCheque.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnEditarCheque.setText("Editar");
         btnEditarCheque.setPreferredSize(new java.awt.Dimension(120, 50));
+        btnEditarCheque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarChequeActionPerformed(evt);
+            }
+        });
 
         lblBuscarCheque1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblBuscarCheque1.setText("Buscar cheque");
@@ -235,6 +240,23 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnEditarChequeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarChequeActionPerformed
+        
+        int column = 1;
+        int row = tblChequesIncompletos.getSelectedRow();
+        String value = tblChequesIncompletos.getModel().getValueAt(row, column).toString();
+        int numCheque = Integer.parseInt(value);
+        MantenedorCheques mc = new MantenedorCheques();
+        try {
+            Cheque cheque = mc.obtenerChequePorNroCheque(numCheque);
+            chequespamacri.Vistas.Cheque.Incompletos.EditarChequeIncompleto eci = new chequespamacri.Vistas.Cheque.Incompletos.EditarChequeIncompleto(usrConectado,cheque);
+            eci.setVisible(true);
+        } catch (Exception e) {
+            System.out.println("No se pudo realizar la acción");
+        }
+        
+    }//GEN-LAST:event_btnEditarChequeActionPerformed
 
     /**
      * @param args the command line arguments

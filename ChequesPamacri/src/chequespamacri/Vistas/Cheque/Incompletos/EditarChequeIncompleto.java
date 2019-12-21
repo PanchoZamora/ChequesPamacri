@@ -5,6 +5,7 @@
  */
 package chequespamacri.Vistas.Cheque.Incompletos;
 
+import Biblioteca.Cheque;
 import Biblioteca.Usuario;
 
 /**
@@ -17,9 +18,12 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
      * Creates new form EditarChequeIncompleto
      */
     private Usuario usrConectado;
-    public EditarChequeIncompleto(Usuario usr) {
+    private Cheque cheque;
+    public EditarChequeIncompleto(Usuario usr,Cheque ch) {
         initComponents();
         usrConectado = usr;
+        cheque = ch;
+        initFormulario();
     }
 
     /**
@@ -250,7 +254,7 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarChequeIncompleto(null).setVisible(true);
+                new EditarChequeIncompleto(null,null).setVisible(true);
             }
         });
     }
@@ -272,4 +276,22 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
     private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txtNumeroFactura;
     // End of variables declaration//GEN-END:variables
+
+    private void initFormulario() {
+        /*
+        Cobrado
+        emitido
+        nulo
+        sin cobrar
+        */
+        cmbEstado.removeAllItems();
+        lblNumeroCheque.setText(cheque.getNroCheque());
+        txtMonto.setText(String.valueOf(cheque.getMonto()));
+        txtNumeroFactura.setText(cheque.getNroFactura());
+        cmbEstado.addItem("Cobrado");
+        cmbEstado.addItem("Emitido");
+        cmbEstado.addItem("Nulo");
+        cmbEstado.addItem("Sin Cobrar");
+        
+    }
 }

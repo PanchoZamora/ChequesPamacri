@@ -163,7 +163,7 @@ public class MantenedorCheques {
             String query = "select * from cheque where estado = ?";
             PreparedStatement stmt=conn.prepareStatement(query);
             
-            stmt.setString(1,"Cobrado");
+            stmt.setString(1,"Sin Cobrar");
             ResultSet rs=stmt.executeQuery();  
             
             

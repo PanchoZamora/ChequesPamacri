@@ -98,7 +98,12 @@ public class Cheque {
     }
 
     public void setFechaCobro(LocalDate fechaCobro) {
-        this.fechaCobro = fechaCobro;
+        if(fechaCobro==null){
+            this.fechaCobro = LocalDate.now();
+            
+        }else{
+            this.fechaCobro = fechaCobro;
+        }
     }
 
     public int getIdProveedor() {

@@ -160,10 +160,9 @@ public class MantenedorCheques {
         try {
             
             Connection conn = conexion.getConnection();
-            String query = "select * from cheque where estado = ?";
+            String query = "select * from cheque where estado = 'Sin Cobrar'";
             PreparedStatement stmt=conn.prepareStatement(query);
             
-            stmt.setString(1,"Sin Cobrar");
             ResultSet rs=stmt.executeQuery();  
             
             
@@ -183,6 +182,7 @@ public class MantenedorCheques {
             }
         
         } catch (Exception e) {
+            //exception throw porque fecha cobro es igual a nula. Corregir en la clase.
             throw new Exception(e.getMessage());
         }
         

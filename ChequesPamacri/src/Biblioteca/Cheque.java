@@ -18,12 +18,12 @@ public class Cheque {
     private String nroCheque;
     private LocalDate fechaEmision;
     private String nroFactura;
-    private double monto;
+    private int monto;
     private String estado;
     private LocalDate fechaCobro;
     private int idProveedor;
 
-    public Cheque(int id, String nroCheque, LocalDate fechaEmision, String nroFactura, double monto, String estado, LocalDate fechaCobro,int idProveedor) {
+    public Cheque(int id, String nroCheque, LocalDate fechaEmision, String nroFactura, int monto, String estado, LocalDate fechaCobro,int idProveedor) {
         this.id = id;
         this.nroCheque = nroCheque;
         this.fechaEmision = fechaEmision;
@@ -77,11 +77,11 @@ public class Cheque {
         this.nroFactura = nroFactura;
     }
 
-    public double getMonto() {
+    public int getMonto() {
         return monto;
     }
 
-    public void setMonto(double monto) {
+    public void setMonto(int monto) {
         this.monto = monto;
     }
 

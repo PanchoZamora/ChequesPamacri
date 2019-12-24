@@ -55,7 +55,7 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
         lblBuscarCheque = new javax.swing.JLabel();
         txtNumeroCheque = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
-        btnVerCheque = new javax.swing.JButton();
+        btnCambiarEstado = new javax.swing.JButton();
         lblBuscarCheque1 = new javax.swing.JLabel();
         txtFechaCheque = new javax.swing.JTextField();
         spCheuqes = new javax.swing.JScrollPane();
@@ -84,9 +84,14 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
             }
         });
 
-        btnVerCheque.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btnVerCheque.setText("Ver");
-        btnVerCheque.setPreferredSize(new java.awt.Dimension(120, 50));
+        btnCambiarEstado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnCambiarEstado.setText("Cambiar Estado");
+        btnCambiarEstado.setPreferredSize(new java.awt.Dimension(120, 50));
+        btnCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarEstadoActionPerformed(evt);
+            }
+        });
 
         lblBuscarCheque1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblBuscarCheque1.setText("Buscar cheque");
@@ -122,7 +127,7 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtFechaCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 286, Short.MAX_VALUE)
-                        .addComponent(btnVerCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFormularioLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -143,7 +148,7 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
                         .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblBuscarCheque1)
                             .addComponent(txtFechaCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnVerCheque, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCambiarEstado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -232,6 +237,21 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
+        int column = 1;
+        int row = tblChequesSinCobrar.getSelectedRow();
+        String value = tblChequesSinCobrar.getModel().getValueAt(row, column).toString();
+        int numCheque = Integer.parseInt(value);
+        MantenedorCheques mc = new MantenedorCheques();
+        try {
+            Cheque cheque = mc.obtenerChequePorNroCheque(numCheque);
+            chequespamacri.Vistas.Cheque.SinCobrar.EditarEstadoChequeSinCobrar eci = new chequespamacri.Vistas.Cheque.SinCobrar.EditarEstadoChequeSinCobrar(usrConectado,cheque);
+            eci.setVisible(true);
+        } catch (Exception e) {
+            System.out.println("No se pudo realizar la acción");
+        }
+    }//GEN-LAST:event_btnCambiarEstadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,7 +293,7 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVerCheque;
+    private javax.swing.JButton btnCambiarEstado;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblBuscarCheque;
     private javax.swing.JLabel lblBuscarCheque1;

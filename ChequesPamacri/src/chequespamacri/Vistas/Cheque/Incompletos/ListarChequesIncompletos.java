@@ -318,7 +318,7 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
         MantenedorCheques mc = new MantenedorCheques();
         MantenedorProveedores mp = new MantenedorProveedores();
         DefaultTableModel model = (DefaultTableModel) tblChequesIncompletos.getModel();
-        ArrayList<Cheque> listaChequesSinCobrar = mc.listarChequesSinCobrar();
+        ArrayList<Cheque> listaChequesSinCobrar = mc.listarChequesIncompletos();
         model.setNumRows(0);
         
         Object rowData[] = new Object[8];

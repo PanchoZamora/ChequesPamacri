@@ -190,6 +190,43 @@ public class MantenedorCheques {
         
     }
     
+    public ArrayList listarChequesIncompletos() throws Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        ArrayList<Cheque> arrCheques = new ArrayList<>();
+        try {
+            
+            Connection conn = conexion.getConnection();
+            String query = "SELECT * FROM `cheque` WHERE nroFactura is null OR cobro is null";
+            PreparedStatement stmt=conn.prepareStatement(query);
+            
+            ResultSet rs=stmt.executeQuery();  
+            
+            
+            Cheque aux;
+            while (rs.next()) {                
+                aux = new Cheque();
+                aux.setId(rs.getInt(1));
+                aux.setFechaEmision(rs.getDate(2).toLocalDate());
+                aux.setNroCheque(rs.getString(3));
+                aux.setMonto(rs.getDouble(4));
+                aux.setFechaCobro(rs.getDate(5).toLocalDate());
+                aux.setEstado(rs.getString(6));
+                aux.setNroFactura(rs.getString(7));
+                aux.setIdProveedor(rs.getInt(8));
+                
+                arrCheques.add(aux);
+            }
+        
+        } catch (Exception e) {
+            //exception throw porque fecha cobro es igual a nula. Corregir en la clase.
+            throw new Exception(e.getMessage());
+        }
+        
+        return arrCheques;
+        
+    }
+    
     public ArrayList listarCheques() throws Exception{
         
         ConexionBD conexion = new ConexionBD();

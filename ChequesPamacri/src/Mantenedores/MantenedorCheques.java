@@ -92,7 +92,7 @@ public class MantenedorCheques {
         try {
             
             Connection conn = conexion.getConnection();
-            String query = "select * from cheque where idCheque = ?";
+            String query = "select * from cheque where idCheque = ? ORDER BY idCheque ASC";
             PreparedStatement stmt=conn.prepareStatement(query);
             
             stmt.setInt(1,idCheque);
@@ -160,7 +160,7 @@ public class MantenedorCheques {
         try {
             
             Connection conn = conexion.getConnection();
-            String query = "select * from cheque where estado = 'Sin Cobrar'";
+            String query = "select * from cheque where estado = 'Sin Cobrar' ORDER BY idCheque ASC";
             PreparedStatement stmt=conn.prepareStatement(query);
             
             ResultSet rs=stmt.executeQuery();  
@@ -197,7 +197,7 @@ public class MantenedorCheques {
         try {
             
             Connection conn = conexion.getConnection();
-            String query = "select * from cheque";
+            String query = "select * from cheque ORDER BY idCheque ASC";
             PreparedStatement stmt=conn.prepareStatement(query);
             
             
@@ -250,7 +250,7 @@ public class MantenedorCheques {
         try {
             
             Connection conn = conexion.getConnection();
-            String query = "select * from cheque where fecha = ?";
+            String query = "select * from cheque where fecha = ? ORDER BY idCheque ASC";
             PreparedStatement stmt=conn.prepareStatement(query);
             
             stmt.setDate(1,java.sql.Date.valueOf(fecha));

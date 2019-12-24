@@ -336,9 +336,12 @@ public class IngresoCheques extends javax.swing.JFrame {
             for (Proveedor proveedor : listaProveedores) {
                 cmbProveedor.addItem(proveedor.getNombre());
             }
+            
         } catch (Exception e) {
             System.out.println("No se pudo iniciar los datos de proveedores");
         }
+        
+        
         
         
         

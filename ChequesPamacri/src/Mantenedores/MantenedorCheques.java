@@ -145,12 +145,12 @@ public class MantenedorCheques {
             else{
                 throw new Exception("No se ha encontrado nada");
             }
+            return obtenido;
                 
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
         
-        return null;
     }
     
     public ArrayList listarChequesSinCobrar() throws Exception{

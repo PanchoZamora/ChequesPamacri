@@ -264,7 +264,7 @@ public class IngresoCheques extends javax.swing.JFrame {
             ingresado.setNroCheque(txtNumeroCheque.getText());
             ingresado.setNroFactura(txtNumeroFactura.getText());
             ingresado.setIdProveedor(proveedor.getId());
-            ingresado.setMonto(Double.parseDouble(txtMonto.getText()));
+            ingresado.setMonto(Integer.parseInt(txtMonto.getText()));
             ingresado.setEstado("Sin Cobrar"); // ESTADO POR DEFAULT
             mc.ingresar(ingresado);
         } catch (Exception e) {

@@ -37,7 +37,7 @@ public class MantenedorCheques {
 
         stmt.setDate(1,java.sql.Date.valueOf(cheque.getFechaEmision()));
         stmt.setString(2,cheque.getNroCheque());
-        stmt.setDouble(3,cheque.getMonto());
+        stmt.setInt(3,cheque.getMonto());
         if (cheque.getFechaCobro()==null) {
             stmt.setNull(4,Types.NULL);
         }
@@ -75,7 +75,7 @@ public class MantenedorCheques {
 
         stmt.setDate(1,java.sql.Date.valueOf(modificado.getFechaEmision()));
         stmt.setString(2,modificado.getNroCheque());
-        stmt.setDouble(3,modificado.getMonto());
+        stmt.setInt(3,modificado.getMonto());
         stmt.setDate(4,java.sql.Date.valueOf(modificado.getFechaCobro()));
         stmt.setString(5,modificado.getEstado());
         stmt.setString(6,modificado.getNroFactura());
@@ -172,7 +172,7 @@ public class MantenedorCheques {
                 aux.setId(rs.getInt(1));
                 aux.setFechaEmision(rs.getDate(2).toLocalDate());
                 aux.setNroCheque(rs.getString(3));
-                aux.setMonto(rs.getDouble(4));
+                aux.setMonto(rs.getInt(4));
                 aux.setFechaCobro(rs.getDate(5).toLocalDate());
                 aux.setEstado(rs.getString(6));
                 aux.setNroFactura(rs.getString(7));
@@ -209,7 +209,7 @@ public class MantenedorCheques {
                 aux.setId(rs.getInt(1));
                 aux.setFechaEmision(rs.getDate(2).toLocalDate());
                 aux.setNroCheque(rs.getString(3));
-                aux.setMonto(rs.getDouble(4));
+                aux.setMonto(rs.getInt(4));
                 aux.setFechaCobro(rs.getDate(5).toLocalDate());
                 aux.setEstado(rs.getString(6));
                 aux.setNroFactura(rs.getString(7));
@@ -247,7 +247,7 @@ public class MantenedorCheques {
                 aux.setId(rs.getInt(1));
                 aux.setFechaEmision(rs.getDate(2).toLocalDate());
                 aux.setNroCheque(rs.getString(3));
-                aux.setMonto(rs.getDouble(4));
+                aux.setMonto(rs.getInt(4));
                 aux.setFechaCobro(rs.getDate(5).toLocalDate());
                 aux.setEstado(rs.getString(6));
                 aux.setNroFactura(rs.getString(7));
@@ -300,7 +300,7 @@ public class MantenedorCheques {
                 aux.setId(rs.getInt(1));
                 aux.setFechaEmision(rs.getDate(2).toLocalDate());
                 aux.setNroCheque(rs.getString(3));
-                aux.setMonto(rs.getDouble(4));
+                aux.setMonto(rs.getInt(4));
                 aux.setFechaCobro(rs.getDate(5).toLocalDate());
                 aux.setEstado(rs.getString(6));
                 aux.setNroFactura(rs.getString(7));

@@ -87,9 +87,8 @@ LOAD DATA INFILE "Carga_Cheques.csv" INTO TABLE pamacri.Cheque
 FIELDS TERMINATED BY ';'
 LINES TERMINATED BY  '\r\n' 
 IGNORE 1 LINES
-(@fecha,@dummy,nroCheque,@nroFactura,@monto,@dummy,@cobro,@proveedor)
+(@fecha,@dummy,nroCheque,nroFactura,@monto,@dummy,@cobro,@proveedor)
 SET Proveedor_idProveedor = (SELECT idProveedor FROM proveedor WHERE nombreProveedor = @proveedor),
-nroFactura = nullif(@nroFactura,'null' OR 'nulo'),
 fecha = @fecha, -- STR_TO_DATE(@fecha,'%d/%m/%Y'),
 monto = REPLACE(REPLACE(@monto,'$',''),'.',''),
 cobro = @cobro; -- STR_TO_DATE(@cobro,'%d/%m/%Y');

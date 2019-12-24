@@ -7,6 +7,8 @@ package chequespamacri.Vistas.Cheque.Incompletos;
 
 import Biblioteca.Cheque;
 import Biblioteca.Usuario;
+import Mantenedores.MantenedorCheques;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,7 +51,6 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
         lblChequeSinCobrar = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
-        lblNumeroCheque = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -145,9 +146,6 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chequespamacri/Img/my-shop-logo-1550807958.jpg"))); // NOI18N
         lblLogo.setMaximumSize(new java.awt.Dimension(1000, 800));
 
-        lblNumeroCheque.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        lblNumeroCheque.setText("N° Cheque");
-
         javax.swing.GroupLayout pnBannerLayout = new javax.swing.GroupLayout(pnBanner);
         pnBanner.setLayout(pnBannerLayout);
         pnBannerLayout.setHorizontalGroup(
@@ -156,14 +154,9 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnBannerLayout.createSequentialGroup()
-                        .addComponent(lblChequeSinCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnBannerLayout.createSequentialGroup()
-                        .addComponent(lblNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addComponent(lblChequeSinCobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnBannerLayout.setVerticalGroup(
             pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,8 +169,6 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
                         .addGroup(pnBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombreUsuario)
                             .addComponent(lblChequeSinCobrar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblNumeroCheque)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -217,7 +208,16 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        
+        cheque.setMonto(Double.parseDouble(txtMonto.getText()));
+        cheque.setNroFactura(txtNumeroFactura.getText());
+        cheque.setEstado(cmbEstado.getSelectedItem().toString());
+        MantenedorCheques mc = new MantenedorCheques();
+        try {
+            mc.modificar(cheque);
+            JOptionPane.showMessageDialog(rootPane, "Editado correctamente");
+        } catch (Exception e) {
+            System.out.println("El cheque no se ha podido modificar");
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -268,7 +268,6 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblMonto;
     private javax.swing.JLabel lblNombreUsuario;
-    private javax.swing.JLabel lblNumeroCheque;
     private javax.swing.JLabel lblNumeroFactura;
     private javax.swing.JPanel pnBanner;
     private javax.swing.JPanel pnGeneral;
@@ -285,7 +284,7 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
         sin cobrar
         */
         cmbEstado.removeAllItems();
-        lblNumeroCheque.setText(cheque.getNroCheque());
+        lblChequeSinCobrar.setText(lblChequeSinCobrar.getText() + cheque.getNroCheque());
         txtMonto.setText(String.valueOf(cheque.getMonto()));
         txtNumeroFactura.setText(cheque.getNroFactura());
         cmbEstado.addItem("Cobrado");

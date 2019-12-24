@@ -81,7 +81,7 @@ public class MantenedorCheques {
         stmt.setString(6,modificado.getNroFactura());
         stmt.setInt(7,modificado.getIdProveedor());
         stmt.setInt(8, modificado.getId());
-        ResultSet rs=stmt.executeQuery();  
+        stmt.executeUpdate();  
         
     }
     

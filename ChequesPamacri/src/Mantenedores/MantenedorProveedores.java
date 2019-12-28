@@ -61,7 +61,7 @@ public class MantenedorProveedores {
         stmt.setInt(5,modificado.getId());
         
         
-        ResultSet rs=stmt.executeQuery();  
+        stmt.executeUpdate();  
         
     }
     
@@ -221,6 +221,19 @@ public class MantenedorProveedores {
         String query = "Delete from proveedor where idProveedor = ?";
         PreparedStatement stmt=conn.prepareStatement(query);
         stmt.setInt(1,idProveedor);
+        
+        ResultSet rs=stmt.executeQuery();  
+        
+    }
+    
+    public void eliminarPorRut(String rut) throws Exception{
+        
+        ConexionBD conexion = new ConexionBD();
+        
+        Connection conn = conexion.getConnection();
+        String query = "Delete from proveedor where rutProveedor = ?";
+        PreparedStatement stmt=conn.prepareStatement(query);
+        stmt.setString(1,rut);
         
         ResultSet rs=stmt.executeQuery();  
         

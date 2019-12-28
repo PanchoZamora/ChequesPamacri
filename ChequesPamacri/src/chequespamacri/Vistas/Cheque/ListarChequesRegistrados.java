@@ -56,7 +56,6 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         spCheques = new javax.swing.JScrollPane();
         tblChequesRegistrados = new javax.swing.JTable();
-        btnVerCheque = new javax.swing.JButton();
         lblBuscarCheque1 = new javax.swing.JLabel();
         txtFechaCheque = new javax.swing.JTextField();
         pnBanner = new javax.swing.JPanel();
@@ -110,10 +109,6 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         tblChequesRegistrados.getTableHeader().setReorderingAllowed(false);
         spCheques.setViewportView(tblChequesRegistrados);
 
-        btnVerCheque.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btnVerCheque.setText("Ver");
-        btnVerCheque.setPreferredSize(new java.awt.Dimension(120, 50));
-
         lblBuscarCheque1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblBuscarCheque1.setText("Buscar cheque");
 
@@ -127,7 +122,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
             .addGroup(pnFormularioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(spCheques)
+                    .addComponent(spCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
                     .addGroup(pnFormularioLayout.createSequentialGroup()
                         .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnFormularioLayout.createSequentialGroup()
@@ -138,8 +133,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
                                 .addComponent(lblBuscarCheque1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtFechaCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
-                        .addComponent(btnVerCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFormularioLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -151,16 +145,13 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(spCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnFormularioLayout.createSequentialGroup()
-                        .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBuscarCheque)
-                            .addComponent(txtNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBuscarCheque1)
-                            .addComponent(txtFechaCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btnVerCheque, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBuscarCheque)
+                    .addComponent(txtNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblBuscarCheque1)
+                    .addComponent(txtFechaCheque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
@@ -296,7 +287,6 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnVerCheque;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblBuscarCheque;
     private javax.swing.JLabel lblBuscarCheque1;

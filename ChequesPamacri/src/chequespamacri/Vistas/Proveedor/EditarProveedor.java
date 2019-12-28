@@ -231,10 +231,13 @@ public class EditarProveedor extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         MantenedorProveedores mp = new MantenedorProveedores();
+        String rut = txtRut.getText();
+        String nombre = txtNombre.getText();
+        int plazo = Integer.parseInt(txtPlazoCobro.getText());
         try {
-            proveedor.setRut(txtRut.getText());
-            proveedor.setNombre(txtNombre.getText());
-            proveedor.setPlazo(Integer.parseInt(txtPlazoCobro.getText()));
+            proveedor.setRut(rut);
+            proveedor.setNombre(nombre);
+            proveedor.setPlazo(plazo);
             mp.modificar(proveedor);
             JOptionPane.showMessageDialog(rootPane, "Proveedor modificado correctamente");
             this.dispose();

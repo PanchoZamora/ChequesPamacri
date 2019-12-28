@@ -13,6 +13,7 @@ import Mantenedores.MantenedorProveedores;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -117,6 +118,11 @@ public class ListarProveedores extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setPreferredSize(new java.awt.Dimension(120, 50));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -270,7 +276,7 @@ public class ListarProveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        int column = 1;
+        int column = 0;
         int row = tblProveedores.getSelectedRow();
         String rut = tblProveedores.getModel().getValueAt(row, column).toString();
         MantenedorProveedores mp = new MantenedorProveedores();
@@ -282,6 +288,20 @@ public class ListarProveedores extends javax.swing.JFrame {
             System.out.println("No se pudo realizar la acción");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int column = 0;
+        int row = tblProveedores.getSelectedRow();
+        String rut = tblProveedores.getModel().getValueAt(row, column).toString();
+        MantenedorProveedores mp = new MantenedorProveedores();
+        try {
+            mp.eliminarPorRut(rut);
+            JOptionPane.showMessageDialog(rootPane, "Se la eliminado correctamente el proveedor");
+            initTable();
+        } catch (Exception e) {
+            System.out.println("No se ha podidio eliminar el proveedor");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments

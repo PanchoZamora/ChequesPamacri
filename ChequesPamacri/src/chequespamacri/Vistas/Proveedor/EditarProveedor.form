@@ -152,9 +152,6 @@
                   <Font name="Arial" size="12" style="1"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPlazoCobroActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblNombre">
               <Properties>
@@ -204,6 +201,9 @@
                   <Dimension value="[150, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnVolver">
               <Properties>

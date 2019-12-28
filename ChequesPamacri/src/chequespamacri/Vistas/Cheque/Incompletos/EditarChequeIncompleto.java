@@ -208,7 +208,7 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        cheque.setMonto(Double.parseDouble(txtMonto.getText()));
+        cheque.setMonto(Integer.parseInt(txtMonto.getText()));
         cheque.setNroFactura(txtNumeroFactura.getText());
         cheque.setEstado(cmbEstado.getSelectedItem().toString());
         MantenedorCheques mc = new MantenedorCheques();

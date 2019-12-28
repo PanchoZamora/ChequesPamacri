@@ -9,9 +9,20 @@ import Biblioteca.Cheque;
 import Biblioteca.Proveedor;
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.InputStream;
+import java.util.Iterator;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 /**
  *
@@ -19,18 +30,30 @@ import java.util.logging.Logger;
  */
 public class MantenedorImpresion {
     
-    public void generarCheque(Cheque ingresado, Proveedor proveedor) {
+    public void generarCheque(Cheque ingresado, Proveedor proveedor) throws FileNotFoundException, IOException {
+        
+        Cheque datosCheque = ingresado;
+        Proveedor provCheque = proveedor;
         
         
         
-        
-        
+        InputStream inp = new FileInputStream("src/TmpCheque.xlsx");
+        Workbook wb = WorkbookFactory.create(inp);
+        Sheet sheet = wb.getSheetAt(0);
+        Row row= sheet.getRow(7);
+        Cell cell = row.getCell(1);
+        String week = cell.getRichStringCellValue().getString();
+        cell.setCellValue("18:00"); 
+        FileOutputStream fileOut = new FileOutputStream("src/TmpCheque.xlsx");
+        wb.write(fileOut);
+        fileOut.close();
+
         
     }
 
     public void imprimir() throws Exception {
         try {
-            File fileToPrint = new File("C:\\Users\\Francisco\\Desktop\\TmpCheque.xlsx");
+            File fileToPrint = new File("src/TmpCheque.xlsx");
             Desktop.getDesktop().print(fileToPrint);
         } catch (IOException ex) {
             throw new Exception("Ha ocurrido un error al imprimir : "+ ex.getMessage());

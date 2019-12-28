@@ -280,6 +280,7 @@ public class IngresoCheques extends javax.swing.JFrame {
                 MantenedorImpresion impresion = new MantenedorImpresion();
                 impresion.generarCheque(ingresado,proveedor);
                 impresion.imprimir();
+                JOptionPane.showMessageDialog(rootPane," Ingresado Correctamente ");
             }
             
             

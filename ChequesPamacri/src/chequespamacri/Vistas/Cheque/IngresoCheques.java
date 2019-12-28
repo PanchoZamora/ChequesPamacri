@@ -9,8 +9,10 @@ import Biblioteca.Cheque;
 import Biblioteca.Proveedor;
 import Biblioteca.Usuario;
 import Mantenedores.MantenedorCheques;
+import Mantenedores.MantenedorImpresion;
 import Mantenedores.MantenedorProveedores;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -265,6 +267,22 @@ public class IngresoCheques extends javax.swing.JFrame {
             ingresado.setMonto(Integer.parseInt(txtMonto.getText()));
             ingresado.setEstado("Sin Cobrar"); // ESTADO POR DEFAULT
             mc.ingresar(ingresado);
+            
+            String[] options = new String[] {"Si", "No"};
+            int response = JOptionPane.showOptionDialog(null, "¿ Desea imprimir el cheque " + ingresado.getNroCheque() + " ?", "Imprimir Cheque",
+            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+            null, options, options[0]);
+            
+            if (response==1) {
+                JOptionPane.showMessageDialog(rootPane," Ingresado Correctamente ");
+            }
+            else{
+                MantenedorImpresion impresion = new MantenedorImpresion();
+                impresion.generarCheque(ingresado,proveedor);
+                impresion.imprimir();
+            }
+            
+            
             this.dispose();
         } catch (Exception e) {
             System.out.println("No se ha ingresado el cheque : " + e.getMessage() + " / " + e.getLocalizedMessage() );

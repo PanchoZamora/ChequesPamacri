@@ -7,6 +7,8 @@ package chequespamacri.Vistas.Proveedor;
 
 import Biblioteca.Proveedor;
 import Biblioteca.Usuario;
+import Mantenedores.MantenedorProveedores;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +24,7 @@ public class EditarProveedor extends javax.swing.JFrame {
     public EditarProveedor(Usuario usr,Proveedor prv) {
         initComponents();
         proveedor = prv;
+        initDatos();
         this.setLocationRelativeTo(null);
         try {
             usrConectado = usr;
@@ -68,11 +71,6 @@ public class EditarProveedor extends javax.swing.JFrame {
         lblRut.setText("Rut");
 
         txtPlazoCobro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txtPlazoCobro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPlazoCobroActionPerformed(evt);
-            }
-        });
 
         lblNombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblNombre.setText("Nombre");
@@ -90,6 +88,11 @@ public class EditarProveedor extends javax.swing.JFrame {
         btnIngresar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnIngresar.setText("Guardar");
         btnIngresar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnVolver.setText("Volver");
@@ -222,13 +225,23 @@ public class EditarProveedor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPlazoCobroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlazoCobroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPlazoCobroActionPerformed
-
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        MantenedorProveedores mp = new MantenedorProveedores();
+        try {
+            proveedor.setRut(txtRut.getText());
+            proveedor.setNombre(txtNombre.getText());
+            proveedor.setPlazo(Integer.parseInt(txtPlazoCobro.getText()));
+            mp.modificar(proveedor);
+            JOptionPane.showMessageDialog(rootPane, "Proveedor modificado correctamente");
+            this.dispose();
+        } catch (Exception e) {
+            System.out.println("No se ha podido modificar el proveedor");
+        }
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,4 +295,10 @@ public class EditarProveedor extends javax.swing.JFrame {
     private javax.swing.JTextField txtPlazoCobro;
     private javax.swing.JTextField txtRut;
     // End of variables declaration//GEN-END:variables
+
+    private void initDatos() {
+        txtNombre.setText(proveedor.getNombre());
+        txtPlazoCobro.setText(String.valueOf(proveedor.getPlazo()));
+        txtRut.setText(proveedor.getRut());
+    }
 }

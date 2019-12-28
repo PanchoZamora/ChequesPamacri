@@ -112,8 +112,12 @@ public class IngresoCheques extends javax.swing.JFrame {
         pnFormularioLayout.setHorizontalGroup(
             pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFormularioLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnFormularioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnFormularioLayout.createSequentialGroup()
                         .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNumeroCheque, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,13 +129,7 @@ public class IngresoCheques extends javax.swing.JFrame {
                             .addComponent(cmbProveedor, 0, 244, Short.MAX_VALUE)
                             .addComponent(txtNumeroFactura)
                             .addComponent(txtMonto)
-                            .addComponent(txtNumeroCheque)))
-                    .addGroup(pnFormularioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
+                            .addComponent(txtNumeroCheque))))
                 .addContainerGap())
         );
         pnFormularioLayout.setVerticalGroup(
@@ -164,7 +162,7 @@ public class IngresoCheques extends javax.swing.JFrame {
         pnIngresoCheques.setLayout(pnIngresoChequesLayout);
         pnIngresoChequesLayout.setHorizontalGroup(
             pnIngresoChequesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnIngresoChequesLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnIngresoChequesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -267,6 +265,7 @@ public class IngresoCheques extends javax.swing.JFrame {
             ingresado.setMonto(Integer.parseInt(txtMonto.getText()));
             ingresado.setEstado("Sin Cobrar"); // ESTADO POR DEFAULT
             mc.ingresar(ingresado);
+            this.dispose();
         } catch (Exception e) {
             System.out.println("No se ha ingresado el cheque : " + e.getMessage() + " / " + e.getLocalizedMessage() );
         }

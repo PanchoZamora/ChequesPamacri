@@ -173,7 +173,11 @@ public class MantenedorCheques {
                 aux.setFechaEmision(rs.getDate(2).toLocalDate());
                 aux.setNroCheque(rs.getString(3));
                 aux.setMonto(rs.getInt(4));
-                aux.setFechaCobro(rs.getDate(5).toLocalDate());
+                try {
+                    aux.setFechaCobro(rs.getDate(5).toLocalDate());
+                } catch (Exception e) {
+                    aux.setFechaCobro(LocalDate.now());
+                }
                 aux.setEstado(rs.getString(6));
                 aux.setNroFactura(rs.getString(7));
                 aux.setIdProveedor(rs.getInt(8));
@@ -210,7 +214,11 @@ public class MantenedorCheques {
                 aux.setFechaEmision(rs.getDate(2).toLocalDate());
                 aux.setNroCheque(rs.getString(3));
                 aux.setMonto(rs.getInt(4));
-                aux.setFechaCobro(rs.getDate(5).toLocalDate());
+                try {
+                    aux.setFechaCobro(rs.getDate(5).toLocalDate());
+                } catch (Exception e) {
+                    aux.setFechaCobro(LocalDate.now());
+                }
                 aux.setEstado(rs.getString(6));
                 aux.setNroFactura(rs.getString(7));
                 aux.setIdProveedor(rs.getInt(8));

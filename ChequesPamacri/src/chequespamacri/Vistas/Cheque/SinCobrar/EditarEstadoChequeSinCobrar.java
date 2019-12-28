@@ -7,6 +7,10 @@ package chequespamacri.Vistas.Cheque.SinCobrar;
 
 import Biblioteca.Cheque;
 import Biblioteca.Usuario;
+import Mantenedores.MantenedorCheques;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -67,6 +71,11 @@ public class EditarEstadoChequeSinCobrar extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.setPreferredSize(new java.awt.Dimension(120, 50));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnVolver.setText("Volver");
@@ -201,6 +210,19 @@ public class EditarEstadoChequeSinCobrar extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        String estado = cmbEstado.getSelectedItem().toString();
+        MantenedorCheques mc = new MantenedorCheques();
+        cheque.setEstado(estado);
+        try {
+            mc.modificar(cheque);
+            JOptionPane.showMessageDialog(rootPane, "El cheque se ha modificado correctamente");
+            this.dispose();
+        } catch (Exception ex) {
+            System.out.println("El cheque no se ha podido modificar");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments

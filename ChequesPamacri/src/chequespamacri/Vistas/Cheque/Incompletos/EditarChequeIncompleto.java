@@ -215,6 +215,7 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
         try {
             mc.modificar(cheque);
             JOptionPane.showMessageDialog(rootPane, "Editado correctamente");
+            this.dispose();
         } catch (Exception e) {
             System.out.println("El cheque no se ha podido modificar");
         }

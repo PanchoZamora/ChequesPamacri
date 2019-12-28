@@ -5,6 +5,7 @@
  */
 package chequespamacri.Vistas.Proveedor;
 
+import Biblioteca.Proveedor;
 import Biblioteca.Usuario;
 
 /**
@@ -17,11 +18,19 @@ public class EditarProveedor extends javax.swing.JFrame {
      * Creates new form EditarProveedor
      */
     private Usuario usrConectado;
-    public EditarProveedor(Usuario usr) {
+    private Proveedor proveedor;
+    public EditarProveedor(Usuario usr,Proveedor prv) {
         initComponents();
-        usrConectado = usr;
-        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        proveedor = prv;
         this.setLocationRelativeTo(null);
+        try {
+            usrConectado = usr;
+            lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        } catch (Exception e) {
+            System.out.println("No hay usuario conectado");
+        }
+        
+        
     }
 
     /**
@@ -251,7 +260,7 @@ public class EditarProveedor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarProveedor(null).setVisible(true);
+                new EditarProveedor(null,null).setVisible(true);
             }
         });
     }

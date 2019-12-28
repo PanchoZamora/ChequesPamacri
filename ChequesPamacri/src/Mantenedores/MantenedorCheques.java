@@ -137,7 +137,12 @@ public class MantenedorCheques {
                 obtenido.setFechaEmision(rs.getDate(2).toLocalDate());
                 obtenido.setNroCheque(rs.getString(3));
                 obtenido.setMonto(rs.getInt(4));
-                obtenido.setFechaCobro(rs.getDate(5).toLocalDate());
+                try {
+                    obtenido.setFechaCobro(rs.getDate(5).toLocalDate());
+                } catch (Exception e) {
+                    obtenido.setFechaCobro(LocalDate.now());
+                }
+                
                 obtenido.setEstado(rs.getString(6));
                 obtenido.setNroFactura(rs.getString(7));
                 obtenido.setIdProveedor(rs.getInt(8));

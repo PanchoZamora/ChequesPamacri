@@ -84,6 +84,7 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
             }
         });
 
+        tblChequesSinCobrar.setAutoCreateRowSorter(true);
         tblChequesSinCobrar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -117,7 +118,6 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnFormularioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnActualizar)
                         .addGap(18, 18, 18)
                         .addComponent(btnCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))

@@ -7,9 +7,12 @@ package chequespamacri.Vistas;
 
 import Biblioteca.Usuario;
 import Mantenedores.MantenedorCheques;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -23,7 +26,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private Usuario usrConectado;
     public PaginaPrincipal(Usuario usr) throws Exception {
         initComponents();
-
+        
         this.setLocationRelativeTo(null);
         try {
            this.usrConectado = usr;
@@ -39,8 +42,10 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         Mantenedores.MantenedorCheques mantCheques = new MantenedorCheques();
         lblNumeroChequesSinCobrar.setText(Integer.toString(mantCheques.cantidadChequesSinCobrar()));
         lblNumeroChequesDatosFaltantes.setText(Integer.toString(mantCheques.cantidadChequesIncompletos()));
+        actualizarPanel();
         
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -300,6 +305,24 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
+    public void actualizarPanel(){
+        int delayTabla = 10000; //milliseconds ( 10 segundos )
+        ActionListener taskPerformer = new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                try {
+                    Mantenedores.MantenedorCheques mantCheques = new MantenedorCheques();
+                    lblNumeroChequesSinCobrar.setText(Integer.toString(mantCheques.cantidadChequesSinCobrar()));
+                    lblNumeroChequesDatosFaltantes.setText(Integer.toString(mantCheques.cantidadChequesIncompletos()));
+                } catch (Exception ex) {
+                    System.out.println("No se ha podido consultar los datos sobre los cheques");
+                }
+                
+            }
+        };
+        new Timer(delayTabla, taskPerformer).start();
+    }
+    
+    
     private void btnIngresoChequesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresoChequesActionPerformed
         chequespamacri.Vistas.Cheque.IngresoCheques ingresoCheques = new chequespamacri.Vistas.Cheque.IngresoCheques(usrConectado);
         ingresoCheques.setVisible(true);
@@ -370,6 +393,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             public void run() {
                 try {
                     new PaginaPrincipal(null).setVisible(true);
+                    
                 } catch (Exception ex) {
                     Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                 }

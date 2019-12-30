@@ -37,7 +37,7 @@ public class MantenedorProveedores {
         stmt.setInt(3,ingreso.getPlazo());
         stmt.setString(4,ingreso.getTipo());
         
-        ResultSet rs=stmt.executeQuery();  
+        stmt.executeUpdate();  
             
     }
     
@@ -235,7 +235,7 @@ public class MantenedorProveedores {
         PreparedStatement stmt=conn.prepareStatement(query);
         stmt.setString(1,rut);
         
-        ResultSet rs=stmt.executeQuery();  
+        stmt.executeUpdate();  
         
     }
     

@@ -99,30 +99,26 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnIngresar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                          <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnIngresar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="218" max="32767" attributes="0"/>
-                                  <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblNumeroCheque" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                                      <Component id="lblProveedor" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                                      <Component id="lblNumeroFactura" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                                      <Component id="lblMonto" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="cmbProveedor" pref="244" max="32767" attributes="0"/>
-                                      <Component id="txtNumeroFactura" max="32767" attributes="0"/>
-                                      <Component id="txtMonto" max="32767" attributes="0"/>
-                                      <Component id="txtNumeroCheque" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="lblNumeroCheque" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="lblProveedor" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="lblNumeroFactura" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="lblMonto" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace pref="122" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cmbProveedor" max="32767" attributes="0"/>
+                              <Component id="txtNumeroFactura" max="32767" attributes="0"/>
+                              <Component id="txtMonto" max="32767" attributes="0"/>
+                              <Component id="txtNumeroCheque" alignment="0" min="-2" pref="244" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                 </DimensionLayout>

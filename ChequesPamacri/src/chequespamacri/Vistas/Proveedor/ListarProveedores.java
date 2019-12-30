@@ -51,8 +51,6 @@ public class ListarProveedores extends javax.swing.JFrame {
         pnGeneral = new javax.swing.JPanel();
         pnVerProveedores = new javax.swing.JPanel();
         pnFormulario = new javax.swing.JPanel();
-        lblBuscarProveedor = new javax.swing.JLabel();
-        txtBuscarProveedor = new javax.swing.JTextField();
         btnNuevoProveedor = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         spProveedores = new javax.swing.JScrollPane();
@@ -69,15 +67,14 @@ public class ListarProveedores extends javax.swing.JFrame {
 
         pnVerProveedores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblBuscarProveedor.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblBuscarProveedor.setText("Buscar Proveedor");
-
-        txtBuscarProveedor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        txtBuscarProveedor.setText("RUT");
-
         btnNuevoProveedor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnNuevoProveedor.setText("Nuevo Proveedor");
         btnNuevoProveedor.setPreferredSize(new java.awt.Dimension(150, 50));
+        btnNuevoProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoProveedorActionPerformed(evt);
+            }
+        });
 
         btnVolver.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnVolver.setText("Volver");
@@ -140,9 +137,6 @@ public class ListarProveedores extends javax.swing.JFrame {
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(spProveedores)
                     .addGroup(pnFormularioLayout.createSequentialGroup()
-                        .addComponent(lblBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnActualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -164,10 +158,7 @@ public class ListarProveedores extends javax.swing.JFrame {
                 .addComponent(spProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblBuscarProveedor)
-                        .addComponent(txtBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnActualizar))
+                    .addComponent(btnActualizar)
                     .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -211,7 +202,7 @@ public class ListarProveedores extends javax.swing.JFrame {
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
                 .addComponent(lblNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnBannerLayout.setVerticalGroup(
@@ -303,6 +294,11 @@ public class ListarProveedores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedorActionPerformed
+        chequespamacri.Vistas.Proveedor.AgregarProveedor ap = new chequespamacri.Vistas.Proveedor.AgregarProveedor(usrConectado);
+        ap.setVisible(true);
+    }//GEN-LAST:event_btnNuevoProveedorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -351,7 +347,6 @@ public class ListarProveedores extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNuevoProveedor;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JLabel lblBuscarProveedor;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblProveedores;
@@ -361,7 +356,6 @@ public class ListarProveedores extends javax.swing.JFrame {
     private javax.swing.JPanel pnVerProveedores;
     private javax.swing.JScrollPane spProveedores;
     private javax.swing.JTable tblProveedores;
-    private javax.swing.JTextField txtBuscarProveedor;
     // End of variables declaration//GEN-END:variables
 
     private void initTable() throws Exception {

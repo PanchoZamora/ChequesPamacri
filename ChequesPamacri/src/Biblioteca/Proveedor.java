@@ -46,7 +46,12 @@ public class Proveedor {
     }
 
     public void setRut(String rut) {
-        this.rut = rut;
+        if(rut.isEmpty()){
+            throw new IllegalArgumentException("El rut no puede quedar vacio");
+        }
+        else{
+            this.rut = rut;
+        }
     }
 
     public String getNombre() {
@@ -54,7 +59,12 @@ public class Proveedor {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if(nombre.isEmpty()){
+            throw new IllegalArgumentException("El nombre no puede quedar vacio");
+        }
+        else{
+            this.nombre = nombre;
+        }
     }
 
     public int getPlazo() {
@@ -62,7 +72,12 @@ public class Proveedor {
     }
 
     public void setPlazo(int plazo) {
-        this.plazo = plazo;
+        if(plazo<0){
+            throw new IllegalArgumentException("El plazo no puede ser menor que 0 dias");
+        }
+        else{
+            this.plazo = plazo;
+        }
     }
     
     public String getTipo() {

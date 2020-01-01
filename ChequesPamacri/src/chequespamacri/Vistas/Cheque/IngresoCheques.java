@@ -11,6 +11,7 @@ import Biblioteca.Usuario;
 import Mantenedores.MantenedorCheques;
 import Mantenedores.MantenedorImpresion;
 import Mantenedores.MantenedorProveedores;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -263,6 +264,7 @@ public class IngresoCheques extends javax.swing.JFrame {
             ingresado.setNroFactura(txtNumeroFactura.getText());
             ingresado.setIdProveedor(proveedor.getId());
             ingresado.setMonto(Integer.parseInt(txtMonto.getText()));
+            ingresado.setFechaCobro(LocalDate.now().plusDays(proveedor.getPlazo()));
             ingresado.setEstado("Sin Cobrar"); // ESTADO POR DEFAULT
             mc.ingresar(ingresado);
             
@@ -284,7 +286,7 @@ public class IngresoCheques extends javax.swing.JFrame {
             
             this.dispose();
         } catch (Exception e) {
-            System.out.println("No se ha ingresado el cheque : " + e.getMessage() + " / " + e.getLocalizedMessage() );
+            JOptionPane.showMessageDialog(rootPane,"No se ha ingresado el cheque : " + e.getMessage());
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 

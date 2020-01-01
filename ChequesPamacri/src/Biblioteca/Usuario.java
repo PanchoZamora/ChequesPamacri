@@ -50,9 +50,8 @@ public class Usuario {
 
     public void setNomUsuario(String nomUsuario) {
         
-        // Se valida que el valor no esté vacio, de ser asi, se emite la excepción a ser controlada
         if(nomUsuario == null || nomUsuario.isEmpty() || "".equals(nomUsuario)){
-            throw new IllegalArgumentException("EL NOMBRE ESTA VACIO"); 
+            throw new IllegalArgumentException("El nombre de usuario no puede quedar vacio"); 
         }
         else{
             this.nomUsuario=nomUsuario;
@@ -65,7 +64,10 @@ public class Usuario {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if (nombre.isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede quedar vacio");
+            
+        }
     }
 
     public String getContrasena() {
@@ -87,7 +89,16 @@ public class Usuario {
     }
 
     public void setCorreo(String correo) {
-        this.correo = correo;
+        // Se valida que el valor no esté vacio, de ser asi, se emite la excepción a ser controlada
+        if(correo == null || correo.isEmpty() || "".equals(correo) ){
+            throw new IllegalArgumentException("El correo esta vacio"); 
+        }
+        else if( !correo.contains("@") || !correo.contains(".")){
+            throw new IllegalArgumentException("El correo no es valido");
+        }
+        else{
+            this.correo=correo;
+        }
     }
 
     public String getRol() {

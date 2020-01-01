@@ -58,7 +58,12 @@ public class Cheque {
     }
 
     public void setNroCheque(String nroCheque) {
-        this.nroCheque = nroCheque;
+        if(nroCheque.isEmpty()){
+            throw new IllegalArgumentException("El nro de cheque no puede quedar vacio");
+        }
+        else{
+            this.nroCheque = nroCheque;
+        }
     }
 
     public LocalDate getFechaEmision() {

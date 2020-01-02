@@ -79,7 +79,13 @@ public class Cheque {
     }
 
     public void setNroFactura(String nroFactura) {
-        this.nroFactura = nroFactura;
+        if(nroFactura.isEmpty()){
+            throw new IllegalArgumentException("El nro de cheque no puede quedar vacio");
+        }
+        else{
+            this.nroFactura = nroFactura;
+        }
+        
     }
 
     public int getMonto() {
@@ -87,7 +93,15 @@ public class Cheque {
     }
 
     public void setMonto(int monto) {
-        this.monto = monto;
+        if (monto>999999999) {
+            throw new IllegalArgumentException("El monto no puede superar los 999 millones");
+        }
+        else if (monto<1000){
+            throw new IllegalArgumentException("El monto no puede ser inferior a los 1000 pesos");
+        }
+        else{
+            this.monto = monto;
+        }
     }
 
     public String getEstado() {

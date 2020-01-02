@@ -23,7 +23,7 @@ public class Numero_a_Letra {
     public Numero_a_Letra() {
     }
 
-    public String Convertir(String numero, boolean mayusculas) {
+    public String Convertir(String numero, boolean mayusculas) throws Exception {
         String literal = "";
         String parte_decimal;    
         //si el numero utiliza (.) en lugar de (,) -> se reemplaza
@@ -59,7 +59,7 @@ public class Numero_a_Letra {
                 return (literal + "PESOS");
             }
         } else {//error, no se puede convertir
-            return literal = null;
+            throw new Exception("No se pudo convertir el valor ingresado a texto");
         }
     }
 

@@ -58,30 +58,35 @@ public class MantenedorCheques {
     
     public void modificar(Cheque modificado) throws Exception{
         
-        ConexionBD conexion = new ConexionBD();
-        
-        Connection conn = conexion.getConnection();
-        String query = "UPDATE cheque SET "
-                + " fecha = ? ,"
-                + " nroCheque = ? ,"
-                + " monto = ? ,"
-                + " cobro = ? ,"
-                + " estado = ? ,"
-                + " nroFactura = ? ,"
-                + " Proveedor_idProveedor = ? "
-                + " WHERE idCheque = ? ";
-        
-        PreparedStatement stmt=conn.prepareStatement(query);
+        try {
+            ConexionBD conexion = new ConexionBD();
 
-        stmt.setDate(1,java.sql.Date.valueOf(modificado.getFechaEmision()));
-        stmt.setString(2,modificado.getNroCheque());
-        stmt.setInt(3,modificado.getMonto());
-        stmt.setDate(4,java.sql.Date.valueOf(modificado.getFechaCobro()));
-        stmt.setString(5,modificado.getEstado());
-        stmt.setString(6,modificado.getNroFactura());
-        stmt.setInt(7,modificado.getIdProveedor());
-        stmt.setInt(8, modificado.getId());
-        stmt.executeUpdate();  
+            Connection conn = conexion.getConnection();
+            String query = "UPDATE cheque SET "
+                    + " fecha = ? ,"
+                    + " nroCheque = ? ,"
+                    + " monto = ? ,"
+                    + " cobro = ? ,"
+                    + " estado = ? ,"
+                    + " nroFactura = ? ,"
+                    + " Proveedor_idProveedor = ? "
+                    + " WHERE idCheque = ? ";
+
+            PreparedStatement stmt=conn.prepareStatement(query);
+
+            stmt.setDate(1,java.sql.Date.valueOf(modificado.getFechaEmision()));
+            stmt.setString(2,modificado.getNroCheque());
+            stmt.setInt(3,modificado.getMonto());
+            stmt.setDate(4,java.sql.Date.valueOf(modificado.getFechaCobro()));
+            stmt.setString(5,modificado.getEstado());
+            stmt.setString(6,modificado.getNroFactura());
+            stmt.setInt(7,modificado.getIdProveedor());
+            stmt.setInt(8, modificado.getId());
+            stmt.executeUpdate();
+        } catch (Exception e) {
+            throw new Exception("Error al modificar " + e.getMessage());
+        }
+  
         
     }
     
@@ -261,7 +266,11 @@ public class MantenedorCheques {
                 aux.setFechaEmision(rs.getDate(2).toLocalDate());
                 aux.setNroCheque(rs.getString(3));
                 aux.setMonto(rs.getInt(4));
-                aux.setFechaCobro(rs.getDate(5).toLocalDate());
+                if (rs.getDate(5)==null) {
+                    aux.setFechaCobro(null);
+                }else{
+                    aux.setFechaCobro(rs.getDate(5).toLocalDate());
+                }
                 aux.setEstado(rs.getString(6));
                 aux.setNroFactura(rs.getString(7));
                 aux.setIdProveedor(rs.getInt(8));
@@ -279,14 +288,18 @@ public class MantenedorCheques {
     
     public void eliminar(int idCheque) throws Exception{
         
-        ConexionBD conexion = new ConexionBD();
-        
-        Connection conn = conexion.getConnection();
-        String query = "Delete from cheque where idCheque = ?";
-        PreparedStatement stmt=conn.prepareStatement(query);
-        stmt.setInt(1,idCheque);
-        
-        ResultSet rs=stmt.executeQuery();  
+        try {
+            ConexionBD conexion = new ConexionBD();
+
+            Connection conn = conexion.getConnection();
+            String query = "Delete from cheque where idCheque = ?";
+            PreparedStatement stmt=conn.prepareStatement(query);
+            stmt.setInt(1,idCheque);
+
+            ResultSet rs=stmt.executeQuery();  
+        } catch (Exception e) {
+            throw new Exception("Error al eliminar : " + e.getMessage());
+        }
         
     }
     

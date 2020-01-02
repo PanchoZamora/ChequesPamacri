@@ -262,7 +262,7 @@ public class ListarProveedores extends javax.swing.JFrame {
         try {
             initTable();
         } catch (Exception ex) {
-            System.out.println("No se ha podidio actualizar la tabla");
+            JOptionPane.showMessageDialog(rootPane,"No se ha podidio actualizar la tabla");
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -276,7 +276,7 @@ public class ListarProveedores extends javax.swing.JFrame {
             chequespamacri.Vistas.Proveedor.EditarProveedor eci = new chequespamacri.Vistas.Proveedor.EditarProveedor(usrConectado,proveedor);
             eci.setVisible(true);
         } catch (Exception e) {
-            System.out.println("No se pudo realizar la acción");
+            JOptionPane.showMessageDialog(rootPane,"No se pudo realizar la acción");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -290,7 +290,7 @@ public class ListarProveedores extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Se la eliminado correctamente el proveedor");
             initTable();
         } catch (Exception e) {
-            System.out.println("No se ha podidio eliminar el proveedor");
+            JOptionPane.showMessageDialog(rootPane,"No se ha podidio eliminar el proveedor");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 

@@ -31,7 +31,7 @@ public class MantenedorImpresion {
     
    
     
-    public void generarCheque(Cheque ingresado, Proveedor proveedor) throws FileNotFoundException, IOException {
+    public void generarCheque(Cheque ingresado, Proveedor proveedor) throws FileNotFoundException, IOException, Exception {
         
         try {
             FileInputStream file = new FileInputStream(new File("src/TmpCheque.xlsx"));
@@ -132,17 +132,17 @@ public class MantenedorImpresion {
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("Error : La plantilla esta siendo usada o no se encuentra");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new Exception(e.getMessage());
         }
     }
 
     public void imprimir() throws Exception {
-        /*try {
+        try {
             File fileToPrint = new File("src/TmpCheque.xlsx");
             Desktop.getDesktop().print(fileToPrint);
         } catch (IOException ex) {
             throw new Exception("Ha ocurrido un error al imprimir : "+ ex.getMessage());
-        }*/
+        }
     }
     
 }

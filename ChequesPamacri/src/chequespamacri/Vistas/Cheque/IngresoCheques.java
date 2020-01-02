@@ -356,7 +356,7 @@ public class IngresoCheques extends javax.swing.JFrame {
             }
             
         } catch (Exception e) {
-            System.out.println("No se pudo iniciar los datos de proveedores");
+            JOptionPane.showMessageDialog(rootPane,"No se pudo iniciar los datos de proveedores : " + e.getMessage());
         }
         
         

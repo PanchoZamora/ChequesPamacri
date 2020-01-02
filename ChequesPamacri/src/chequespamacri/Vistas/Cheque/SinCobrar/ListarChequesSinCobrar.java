@@ -7,12 +7,14 @@ package chequespamacri.Vistas.Cheque.SinCobrar;
 
 import Mantenedores.MantenedorCheques;
 import Biblioteca.Cheque;
+import Biblioteca.ExcelWriter;
 import Biblioteca.Proveedor;
 import Biblioteca.Usuario;
 import Mantenedores.MantenedorProveedores;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +27,7 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
      * Creates new form VerChequesSinCobrar
      */
     private Usuario usrConectado;
+    private ArrayList<Cheque> listaCheques;
     public ListarChequesSinCobrar(Usuario usr) throws Exception {
         initComponents();
         
@@ -57,6 +60,7 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
         spCheuqes = new javax.swing.JScrollPane();
         tblChequesSinCobrar = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
         pnBanner = new javax.swing.JPanel();
         lblProveedores = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
@@ -110,6 +114,13 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
             }
         });
 
+        btnImprimir.setText("Guardar Resumen");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnFormularioLayout = new javax.swing.GroupLayout(pnFormulario);
         pnFormulario.setLayout(pnFormularioLayout);
         pnFormularioLayout.setHorizontalGroup(
@@ -120,9 +131,12 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
                     .addGroup(pnFormularioLayout.createSequentialGroup()
                         .addComponent(btnActualizar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFormularioLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(spCheuqes, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))
                 .addContainerGap())
@@ -130,7 +144,7 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
         pnFormularioLayout.setVerticalGroup(
             pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFormularioLayout.createSequentialGroup()
-                .addComponent(spCheuqes, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                .addComponent(spCheuqes, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnFormularioLayout.createSequentialGroup()
@@ -139,7 +153,9 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFormularioLayout.createSequentialGroup()
                         .addComponent(btnCambiarEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -229,15 +245,20 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
     private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
         int column = 1;
         int row = tblChequesSinCobrar.getSelectedRow();
+        try {
+        if(row==-1){
+            throw new Exception("Se debe seleccionar un cheque para editar");
+        }
         String value = tblChequesSinCobrar.getModel().getValueAt(row, column).toString();
+        
         int numCheque = Integer.parseInt(value);
         MantenedorCheques mc = new MantenedorCheques();
-        try {
+        
             Cheque cheque = mc.obtenerChequePorNroCheque(numCheque);
             chequespamacri.Vistas.Cheque.SinCobrar.EditarEstadoChequeSinCobrar eci = new chequespamacri.Vistas.Cheque.SinCobrar.EditarEstadoChequeSinCobrar(usrConectado,cheque);
             eci.setVisible(true);
         } catch (Exception e) {
-            System.out.println("No se pudo realizar la acción");
+            JOptionPane.showMessageDialog(rootPane,"No se pudo realizar la acción : " + e.getMessage());
         }
     }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
@@ -245,9 +266,20 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
         try {
             initTable();
         } catch (Exception ex) {
-            System.out.println("No se ha podidio actualizar la tabla");
+            JOptionPane.showMessageDialog(rootPane,"No se ha podidio actualizar la tabla " + ex.getMessage());
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+        ExcelWriter excel = new ExcelWriter();
+        
+        try {
+            excel.generarExcelCheques(this.listaCheques,"ListaChequesSinCobrar");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Error al guardar resumen : " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,6 +324,7 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnCambiarEstado;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreUsuario;
@@ -309,6 +342,7 @@ public class ListarChequesSinCobrar extends javax.swing.JFrame {
         MantenedorProveedores mp = new MantenedorProveedores();
         DefaultTableModel model = (DefaultTableModel) tblChequesSinCobrar.getModel();
         ArrayList<Cheque> listaChequesSinCobrar = mc.listarChequesSinCobrar();
+        this.listaCheques = listaChequesSinCobrar;
         model.setNumRows(0);
         
         Object rowData[] = new Object[8];

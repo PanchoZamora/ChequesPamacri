@@ -13,6 +13,7 @@ import Mantenedores.MantenedorProveedores;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -232,7 +233,7 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
             chequespamacri.Vistas.Cheque.Incompletos.EditarChequeIncompleto eci = new chequespamacri.Vistas.Cheque.Incompletos.EditarChequeIncompleto(usrConectado,cheque);
             eci.setVisible(true);
         } catch (Exception e) {
-            System.out.println("No se pudo realizar la acción");
+            JOptionPane.showMessageDialog(rootPane,"No se pudo realizar la acción" + e.getMessage());
         }
         
     }//GEN-LAST:event_btnEditarChequeActionPerformed
@@ -241,7 +242,7 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
         try {
             initTable();
         } catch (Exception ex) {
-            System.out.println("No se ha podidio actualizar la tabla");
+            JOptionPane.showMessageDialog(rootPane,"No se ha podidio actualizar la tabla " + ex.getMessage());
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
@@ -299,15 +300,16 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
     private javax.swing.JTable tblChequesIncompletos;
     // End of variables declaration//GEN-END:variables
     private void initTable() throws Exception {
-        MantenedorCheques mc = new MantenedorCheques();
-        MantenedorProveedores mp = new MantenedorProveedores();
-        DefaultTableModel model = (DefaultTableModel) tblChequesIncompletos.getModel();
-        ArrayList<Cheque> listaChequesSinCobrar = mc.listarChequesIncompletos();
-        model.setNumRows(0);
-        
-        Object rowData[] = new Object[8];
-        int i = 0;
-        for (Cheque cheque : listaChequesSinCobrar) {
+        try {
+            MantenedorCheques mc = new MantenedorCheques();
+            MantenedorProveedores mp = new MantenedorProveedores();
+            DefaultTableModel model = (DefaultTableModel) tblChequesIncompletos.getModel();
+            ArrayList<Cheque> listaChequesSinCobrar = mc.listarChequesIncompletos();
+            model.setNumRows(0);
+
+            Object rowData[] = new Object[8];
+            int i = 0;
+            for (Cheque cheque : listaChequesSinCobrar) {
                 Proveedor proveedor = mp.obtenerDatosPorId(cheque.getIdProveedor());
                 rowData[0] = cheque.getFechaEmision().toString();
                 rowData[1] = cheque.getNroCheque();
@@ -319,8 +321,9 @@ public class ListarChequesIncompletos extends javax.swing.JFrame {
                 rowData[7] = cheque.getEstado();               
                 model.insertRow(i, rowData);
                 i++;    
-        }      
-        
-        
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error al iniciar el contenido : " + e.getMessage());
+        }
     }
 }

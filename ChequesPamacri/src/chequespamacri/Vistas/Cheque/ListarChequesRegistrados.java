@@ -6,6 +6,7 @@
 package chequespamacri.Vistas.Cheque;
 
 import Biblioteca.Cheque;
+import Biblioteca.ExcelWriter;
 import Biblioteca.Proveedor;
 import Biblioteca.Usuario;
 import Mantenedores.MantenedorCheques;
@@ -13,6 +14,7 @@ import Mantenedores.MantenedorProveedores;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +27,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
      * Creates new form ChequesRegistrados
      */
     private Usuario usrConectado;
+    private ArrayList<Cheque> listaCheques;
     public ListarChequesRegistrados(Usuario usr) throws Exception {
         initComponents();
         usrConectado = usr;
@@ -54,6 +57,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         spCheques = new javax.swing.JScrollPane();
         tblChequesRegistrados = new javax.swing.JTable();
+        btnImprimir = new javax.swing.JButton();
         pnBanner = new javax.swing.JPanel();
         lblProveedores = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
@@ -99,6 +103,13 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         tblChequesRegistrados.getTableHeader().setReorderingAllowed(false);
         spCheques.setViewportView(tblChequesRegistrados);
 
+        btnImprimir.setText("Imprimir");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnFormularioLayout = new javax.swing.GroupLayout(pnFormulario);
         pnFormulario.setLayout(pnFormularioLayout);
         pnFormularioLayout.setHorizontalGroup(
@@ -109,6 +120,8 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
                     .addComponent(spCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 808, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFormularioLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
@@ -116,9 +129,11 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
             pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFormularioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addComponent(spCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                 .addGap(74, 74, 74)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -209,6 +224,16 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+        Biblioteca.ExcelWriter nuevo = new ExcelWriter();
+        try {
+            nuevo.generarExcelCheques(listaCheques,"TodosLosCheques");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "Error al generar el documento : " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -252,6 +277,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNombreUsuario;
@@ -264,15 +290,17 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
     private javax.swing.JTable tblChequesRegistrados;
     // End of variables declaration//GEN-END:variables
     private void initTable() throws Exception {
-        MantenedorCheques mc = new MantenedorCheques();
-        MantenedorProveedores mp = new MantenedorProveedores();
-        DefaultTableModel model = (DefaultTableModel) tblChequesRegistrados.getModel();
-        ArrayList<Cheque> listaCheques = mc.listarCheques();
-        model.setNumRows(0);
-        
-        Object rowData[] = new Object[8];
-        int i = 0;
-        for (Cheque cheque : listaCheques) {
+        try {
+            MantenedorCheques mc = new MantenedorCheques();
+            MantenedorProveedores mp = new MantenedorProveedores();
+            DefaultTableModel model = (DefaultTableModel) tblChequesRegistrados.getModel();
+            ArrayList<Cheque> lcheques = mc.listarCheques();
+            this.listaCheques = lcheques;
+            model.setNumRows(0);
+
+            Object rowData[] = new Object[8];
+            int i = 0;
+            for (Cheque cheque : lcheques) {
                 Proveedor proveedor = mp.obtenerDatosPorId(cheque.getIdProveedor());
                 rowData[0] = cheque.getFechaEmision().toString();
                 rowData[1] = cheque.getNroCheque();
@@ -284,7 +312,11 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
                 rowData[7] = cheque.getEstado();               
                 model.insertRow(i, rowData);
                 i++;    
-        }      
+            }     
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error: " + e.getMessage());
+        }
+ 
         
         
     }

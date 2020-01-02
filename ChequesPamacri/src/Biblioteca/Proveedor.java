@@ -85,7 +85,17 @@ public class Proveedor {
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        if (tipo.isEmpty()) {
+            throw new IllegalArgumentException("El tipo no puede quedar vacio");
+        }
+        else{
+            this.tipo = tipo;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Proveedor{" + "id=" + id + ", rut=" + rut + ", nombre=" + nombre + ", plazo=" + plazo + ", tipo=" + tipo + '}';
     }
     
     

@@ -35,7 +35,7 @@ public class ConexionBD {
             // create a connection to the database
             conn = DriverManager.getConnection(url, user, password);
         } catch (IOException e) {
-            throw new Exception("ERROR: " + e.getMessage());
+            throw new Exception("Error al conectar con la BDD : " + e.getMessage());
         }
         return conn;
     }

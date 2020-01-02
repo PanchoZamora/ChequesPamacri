@@ -18,15 +18,6 @@ public class Login extends javax.swing.JFrame {
     //Usuario Global
     Usuario usrConectado;
     MantenedorUsuario mantUsuario = new MantenedorUsuario();
-   
-    public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
-    
     
     /**
      * Creates new form Login

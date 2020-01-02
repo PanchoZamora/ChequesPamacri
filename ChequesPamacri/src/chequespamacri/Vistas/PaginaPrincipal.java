@@ -29,13 +29,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
         try {
-           this.usrConectado = usr;
-           if(usrConectado.getRol().equalsIgnoreCase("Administrador")){
-                //btnAdministrador.setVisible(true);
-                lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
-                System.out.println("Logueado como administrador");
-                JOptionPane.showMessageDialog(rootPane, "Bienvenido: " + usrConectado.getNombre());
-            } 
+            this.usrConectado = usr;
+            //btnAdministrador.setVisible(true);
+            lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+            System.out.println("Logueado como administrador");
+            JOptionPane.showMessageDialog(rootPane, "Bienvenido: " + usrConectado.getNombre());
         } catch (Exception e) {
             System.out.println("Ningún usuario conectado");
         }
@@ -300,7 +298,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             proveedor = new chequespamacri.Vistas.Proveedor.ListarProveedores(usrConectado);
             proveedor.setVisible(true);
         } catch (Exception ex) {
-            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "Error: " + ex.getMessage());
         }
         
     }//GEN-LAST:event_btnProveedoresActionPerformed
@@ -314,7 +312,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                     lblNumeroChequesSinCobrar.setText(Integer.toString(mantCheques.cantidadChequesSinCobrar()));
                     lblNumeroChequesDatosFaltantes.setText(Integer.toString(mantCheques.cantidadChequesIncompletos()));
                 } catch (Exception ex) {
-                    System.out.println("No se ha podido consultar los datos sobre los cheques");
+                    JOptionPane.showMessageDialog(rootPane,"No se ha podido consultar los datos sobre los cheques");
                 }
                 
             }
@@ -334,7 +332,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             cheques = new chequespamacri.Vistas.Cheque.ListarChequesRegistrados(usrConectado);
             cheques.setVisible(true);
         } catch (Exception ex) {
-            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane,"Error : " + ex.getMessage());
         }
         
     }//GEN-LAST:event_btnChequesRegistradosActionPerformed
@@ -345,7 +343,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             chequesSinCobrar = new chequespamacri.Vistas.Cheque.SinCobrar.ListarChequesSinCobrar(usrConectado);
             chequesSinCobrar.setVisible(true);
         } catch (Exception ex) {
-            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane,"Error : " + ex.getMessage());
         }
         
     }//GEN-LAST:event_brnVerSinCobrarActionPerformed
@@ -356,7 +354,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             chequesIncompleto = new chequespamacri.Vistas.Cheque.Incompletos.ListarChequesIncompletos(usrConectado);
             chequesIncompleto.setVisible(true);
         } catch (Exception ex) {
-            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane,"Error : " + ex.getMessage());
         }
         
     }//GEN-LAST:event_btnVerDatosFaltantesActionPerformed

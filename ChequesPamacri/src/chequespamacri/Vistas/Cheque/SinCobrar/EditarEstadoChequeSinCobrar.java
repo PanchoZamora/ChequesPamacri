@@ -220,7 +220,7 @@ public class EditarEstadoChequeSinCobrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "El cheque se ha modificado correctamente");
             this.dispose();
         } catch (Exception ex) {
-            System.out.println("El cheque no se ha podido modificar");
+            JOptionPane.showMessageDialog(rootPane,"El cheque no se ha podido modificar");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 

@@ -5,7 +5,10 @@
  */
 package chequespamacri.Vistas.Cheque;
 
+import Biblioteca.Cheque;
 import Biblioteca.Usuario;
+import Mantenedores.MantenedorCheques;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,11 +20,18 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
      * Creates new form EditarChequeRegistrado
      */
     private Usuario usrConectado;
-    public EditarChequeRegistrado(Usuario usr) {
+    private Cheque cheque;
+    public EditarChequeRegistrado(Usuario usr, Cheque ch) {
         initComponents();
-        usrConectado = usr;
-        lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre());
+        cheque = ch;
         this.setLocationRelativeTo(null);
+        initCombo();
+        try {
+            usrConectado = usr;
+            lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre()); 
+        } catch (Exception e) {
+            System.out.println("No hay usuario conectado");
+        }
     }
 
     /**
@@ -40,7 +50,7 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
         lblEstado = new javax.swing.JLabel();
         txtNumeroFactura = new javax.swing.JTextField();
         txtMonto = new javax.swing.JTextField();
-        btnIngresar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         cmbEstado = new javax.swing.JComboBox<>();
         pnBanner = new javax.swing.JPanel();
@@ -66,12 +76,12 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
 
         txtMonto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
-        btnIngresar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        btnIngresar.setText("Guardar");
-        btnIngresar.setPreferredSize(new java.awt.Dimension(150, 50));
-        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -93,20 +103,20 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
             .addGroup(pnVerProveedoresLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNumeroFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(txtMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(cmbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnVerProveedoresLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnVerProveedoresLayout.createSequentialGroup()
+                        .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNumeroFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                            .addComponent(txtMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                            .addComponent(cmbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(pnVerProveedoresLayout.createSequentialGroup()
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnVerProveedoresLayout.setVerticalGroup(
@@ -127,7 +137,7 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(pnVerProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -214,9 +224,19 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIngresarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        cheque.setMonto(Integer.parseInt(txtMonto.getText()));
+        cheque.setNroFactura(txtNumeroFactura.getText());
+        cheque.setEstado(cmbEstado.getSelectedItem().toString());
+        MantenedorCheques mc = new MantenedorCheques();
+        try {
+            mc.modificar(cheque);
+            JOptionPane.showMessageDialog(rootPane, "Editado correctamente");
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"El cheque no se ha podido modificar");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.dispose();
@@ -252,13 +272,13 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarChequeRegistrado(null).setVisible(true);
+                new EditarChequeRegistrado(null,null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JLabel lblCheques;
@@ -274,4 +294,15 @@ public class EditarChequeRegistrado extends javax.swing.JFrame {
     private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txtNumeroFactura;
     // End of variables declaration//GEN-END:variables
+
+    private void initCombo() {
+        cmbEstado.removeAllItems();
+        lblNumeroCheque.setText(lblNumeroCheque.getText() + cheque.getNroCheque());
+        txtMonto.setText(String.valueOf(cheque.getMonto()));
+        txtNumeroFactura.setText(cheque.getNroFactura());
+        cmbEstado.addItem("Cobrado");
+        cmbEstado.addItem("Emitido");
+        cmbEstado.addItem("Nulo");
+        cmbEstado.addItem("Sin Cobrar");
+    }
 }

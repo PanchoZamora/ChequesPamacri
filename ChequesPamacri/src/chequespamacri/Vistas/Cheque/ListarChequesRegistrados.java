@@ -58,6 +58,8 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         spCheques = new javax.swing.JScrollPane();
         tblChequesRegistrados = new javax.swing.JTable();
         btnImprimir = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnActualizar3 = new javax.swing.JButton();
         pnBanner = new javax.swing.JPanel();
         lblProveedores = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
@@ -110,6 +112,22 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.setPreferredSize(new java.awt.Dimension(150, 50));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnActualizar3.setText("Actualizar");
+        btnActualizar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizar3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnFormularioLayout = new javax.swing.GroupLayout(pnFormulario);
         pnFormulario.setLayout(pnFormularioLayout);
         pnFormularioLayout.setHorizontalGroup(
@@ -124,13 +142,23 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnFormularioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnActualizar3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnFormularioLayout.setVerticalGroup(
             pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFormularioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(spCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
-                .addGap(74, 74, 74)
+                .addGap(13, 13, 13)
+                .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -234,6 +262,29 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int column = 1;
+        int row = tblChequesRegistrados.getSelectedRow();
+        String value = tblChequesRegistrados.getModel().getValueAt(row, column).toString();
+        int numCheque = Integer.parseInt(value);
+        MantenedorCheques mc = new MantenedorCheques();
+        try {
+            Cheque cheque = mc.obtenerChequePorNroCheque(numCheque);
+            chequespamacri.Vistas.Cheque.EditarChequeRegistrado eci = new chequespamacri.Vistas.Cheque.EditarChequeRegistrado(usrConectado,cheque);
+            eci.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane,"No se pudo realizar la acción" + e.getMessage());
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnActualizar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizar3ActionPerformed
+        try {
+            initTable();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane,"No se ha podidio actualizar la tabla " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnActualizar3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -277,6 +328,11 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnActualizar1;
+    private javax.swing.JButton btnActualizar2;
+    private javax.swing.JButton btnActualizar3;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblLogo;

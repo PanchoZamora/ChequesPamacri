@@ -23,9 +23,15 @@ public class EditarChequeIncompleto extends javax.swing.JFrame {
     private Cheque cheque;
     public EditarChequeIncompleto(Usuario usr,Cheque ch) {
         initComponents();
-        usrConectado = usr;
         cheque = ch;
+        this.setLocationRelativeTo(null);
         initFormulario();
+        try {
+            usrConectado = usr;
+            lblNombreUsuario.setText("Bienvenido " + usrConectado.getNombre()); 
+        } catch (Exception e) {
+            System.out.println("No hay usuario conectado");
+        }
     }
 
     /**

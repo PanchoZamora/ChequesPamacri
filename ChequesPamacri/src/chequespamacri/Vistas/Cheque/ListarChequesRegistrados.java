@@ -105,6 +105,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
         tblChequesRegistrados.getTableHeader().setReorderingAllowed(false);
         spCheques.setViewportView(tblChequesRegistrados);
 
+        btnImprimir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnImprimir.setText("Imprimir");
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +154,7 @@ public class ListarChequesRegistrados extends javax.swing.JFrame {
             pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnFormularioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                .addComponent(spCheques, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                 .addGap(13, 13, 13)
                 .addGroup(pnFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
